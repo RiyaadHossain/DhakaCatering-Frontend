@@ -26,7 +26,7 @@ export default function Navbar() {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content shadow-md mt-5 p-2 bg-base-200 rounded-box w-52 flex gap-5"
+              className="menu menu-compact dropdown-content shadow-md mt-5 p-2 bg-base-200 rounded-box w-52 flex gap-3"
             >
               <li className="font-semibold flex justify-center content-center">
                 <Link to="/">Home</Link>
@@ -47,7 +47,7 @@ export default function Navbar() {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 flex gap-5">
+          <ul className="menu menu-horizontal px-1 flex gap-3">
             <li className="font-semibold flex justify-center content-center">
               <Link to="/">Home</Link>
             </li>
@@ -72,29 +72,5 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-    /* <div className="navbar bg-base-200 rounded-full mt-5 shadow-md">
-      <div className="flex-1">
-        <a href="web" className="btn btn-ghost font-bold normal-case text-xl">
-          Dhaka Catering
-        </a>
-      </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li className="font-semibold flex justify-center content-center">
-            <a href="web">Home</a>
-          </li>
-          <li className="font-semibold flex justify-center content-center">
-            <a href="web">Menu</a>
-          </li>
-          <li className="font-semibold flex justify-center content-center">
-            <a href="web">Contact</a>
-          </li>
-          <li className="font-semibold flex justify-center content-center">
-            <a href="web">About</a>
-          </li>
-        </ul>
-        
-      </div>
-    </div> */
   );
 }
