@@ -64,7 +64,7 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="mr-5 btn relative">
-            <HiShoppingCart className="text-2xl" />
+            <HiShoppingCart className="text-2xl text-white" />
             <span className="absolute -top-1 -right-1 bg-primary w-5 h-5 rounded-full text-center text-sm font-semibold text-black">
               5
             </span>

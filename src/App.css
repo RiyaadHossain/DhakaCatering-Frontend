@@ -3,3 +3,7 @@
 html {
   font-family: "Poppins", sans-serif;
 }
+
+.section-title{
+  @apply text-4xl text-center font-bold mb-12
+}

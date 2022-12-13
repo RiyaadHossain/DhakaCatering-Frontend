@@ -1,12 +1,16 @@
 import React from "react";
 import Banner from "./Banner";
+import FAQ from "./FAQ";
 import Foods from "./Foods";
+import Testimonials from "./Testimonials";
 
 export default function Home() {
   return (
     <div>
       <Banner />
-      <Foods/>
+      <Foods />
+      <FAQ/>
+      <Testimonials/>
     </div>
   );
 }

@@ -8,7 +8,10 @@ export default function FoodCard() {
         <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="card-title">Shoes!</h2>
+          <div className="badge badge-success badge-sm">Dinner</div>
+        </div>
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions items-center mt-2 justify-end">
           <p className="text-2xl font-semibold">1050৳</p>
@@ -16,9 +19,7 @@ export default function FoodCard() {
             <FaCartPlus className="text-xl" />
           </button>
         </div>
-        <button className="btn btn-outline btn-info mt-4">
-          See Details
-        </button>
+        <button className="btn btn-outline btn-info mt-3">See Details</button>
       </div>
     </div>
   );
