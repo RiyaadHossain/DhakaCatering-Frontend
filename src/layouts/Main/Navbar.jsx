@@ -1,5 +1,6 @@
 import React from "react";
 import { HiShoppingCart } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -28,16 +29,16 @@ export default function Navbar() {
               className="menu menu-compact dropdown-content shadow-md mt-5 p-2 bg-base-200 rounded-box w-52 flex gap-5"
             >
               <li className="font-semibold flex justify-center content-center">
-                Home
+                <Link to="/">Home</Link>
               </li>
               <li className="font-semibold flex justify-center content-center">
-                Menu
+                <Link to="/menu">Menu</Link>
               </li>
               <li className="font-semibold flex justify-center content-center">
-                Contact
+                <Link to="/contact">Contact</Link>
               </li>
               <li className="font-semibold flex justify-center content-center">
-                About
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </div>
@@ -48,16 +49,16 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex gap-5">
             <li className="font-semibold flex justify-center content-center">
-              Home
+              <Link to="/">Home</Link>
             </li>
             <li className="font-semibold flex justify-center content-center">
-              Menu
+              <Link to="/menu">Menu</Link>
             </li>
             <li className="font-semibold flex justify-center content-center">
-              Contact
+              <Link to="/contact">Contact</Link>
             </li>
             <li className="font-semibold flex justify-center content-center">
-              About
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </div>
