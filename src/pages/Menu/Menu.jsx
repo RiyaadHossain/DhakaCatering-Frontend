@@ -5,8 +5,8 @@ import bg_img from "../../assets/images/hero-image-2.jpg";
 
 export default function Menu() {
   return (
-    <div className="pt-5 pb-10">
-      <PageBanner bg_img={bg_img} />
+    <div className="pb-10">
+      <PageBanner bg_img={bg_img} title="Menu" />
       <div>
         <div className="mb-36 flex flex-wrap gap-20 px-6 justify-center">
           <select className="select rounded-md bg-slate-700 text-white select-bordered w-full max-w-[250px] md:max-w-[300px]">

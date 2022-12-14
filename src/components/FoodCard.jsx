@@ -1,7 +1,11 @@
 import React from "react";
 import { FaCartPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function FoodCard() {
+
+  const navigate = useNavigate()
+
   return (
     <div className="card w-80 bg-base-100 shadow-xl hover:-translate-y-3 transition-all">
       <figure>
@@ -21,7 +25,7 @@ export default function FoodCard() {
             </button>
           </div>
         </div>
-        <button className="btn btn-outline btn-info mt-3">See Details</button>
+        <button onClick={() => navigate('/food-item/1')} className="btn btn-outline btn-info mt-3">See Details</button>
       </div>
     </div>
   );
