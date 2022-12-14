@@ -7,3 +7,7 @@ html {
 .section-title{
   @apply text-4xl text-center font-bold mb-12
 }
+
+.display-none{
+  display: none;
+}

@@ -1,16 +1,33 @@
-import React from "react";
-import { MdStars } from 'react-icons/md';
-import { TbFileDescription } from 'react-icons/tb';
+import React, { useState } from "react";
+import Description from "./Description";
+import Reviews from "./Reviews";
 
 export default function Navigation() {
+  const [navig, setNavig] = useState("des");
+
   return (
-    <div className="btm-nav relative max-w-md">
-      <button className="active">
-        <TbFileDescription className="text-2xl"/> Description
-      </button>
-      <button>
-        <MdStars className="text-2xl"/> Reviews
-      </button>
+    <div className="">
+      <div className="btm-nav relative max-w-md">
+        <button
+          onClick={() => setNavig("des")}
+          className={`${
+            navig === "des" ? "active" : null
+          } flex flex-row gap-2 bg-slate-200 mr-2`}
+        >
+          <p>Description</p>
+        </button>
+        <button
+          onClick={() => setNavig("rev")}
+          className={`${
+            navig === "rev" ? "active" : null
+          } flex flex-row gap-2 bg-slate-200 `}
+        >
+          <p>Reviews (7)</p>
+        </button>
+      </div>
+      <div className="mt-8">
+        {navig === "des" ? <Description /> : <Reviews />}
+      </div>
     </div>
   );
 }

@@ -3,23 +3,25 @@ import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-3.jpg";
 import food_img from "../../assets/images/hero-image-2.jpg";
 import Navigation from "./Navigation";
+import SuggestedFood from "./SuggestedFood";
 
 export default function FoodItem() {
+
   return (
     <div className="mb-14">
       <PageBanner bg_img={bg_img} title="Chicken Burger" />
 
       {/* ===================== First Section Start ===================== */}
-      <div className="flex flex-wrap gap-7 px-5 md:px-10">
-        <div className="flex-1">
+      <div className="flex flex-col md:flex-row flex-wrap items-center md:items-start gap-7 px-5 md:px-10">
+        <div className="flex-1 mb-7 md:mb-0">
           <img className="rounded-md" src={food_img} alt="" />
         </div>
         <div className="flex-1">
           <h3 className="font-semibold text-3xl">Chicken Burger</h3>
           <div className="flex gap-16 mt-7">
-            <p className="font-semibold">1035 ৳</p>
+            <p className="font-bold">1035 ৳</p>
             <p>
-              <span className="font-medium">Category:</span> Fast Food
+              <span className="font-semibold">Category:</span> Fast Food
             </p>
           </div>
           <p className="pt-4 font-light">
@@ -36,10 +38,10 @@ export default function FoodItem() {
       </div>
       {/* ===================== First Section End ===================== */}
 
-      <div className="mt-16">
-        <Navigation/>
+      <div className="mt-16 px-12">
+        <Navigation />
+        <SuggestedFood/>
       </div>
-      <div></div>
     </div>
   );
 }
