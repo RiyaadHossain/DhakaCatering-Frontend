@@ -28,16 +28,16 @@ export default function Navbar() {
               tabIndex={0}
               className="menu menu-compact dropdown-content shadow-md mt-5 p-2 bg-base-200 rounded-box w-52 flex gap-3"
             >
-              <li className="font-semibold flex justify-center content-center">
-                <Link to="/">Home</Link>
+              <li className="hover-bordered font-semibold flex justify-center content-center">
+                <Link className="" to="/">Home</Link>
               </li>
-              <li className="font-semibold flex justify-center content-center">
+              <li className="font-semibold hover-bordered flex justify-center content-center">
                 <Link to="/menu">Menu</Link>
               </li>
-              <li className="font-semibold flex justify-center content-center">
+              <li className="font-semibold flex hover-bordered justify-center content-center">
                 <Link to="/contact">Contact</Link>
               </li>
-              <li className="font-semibold flex justify-center content-center">
+              <li className="font-semibold flex justify-center hover-bordered content-center">
                 <Link to="/about">About</Link>
               </li>
             </ul>
@@ -48,16 +48,16 @@ export default function Navbar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex gap-3">
-            <li className="font-semibold flex justify-center content-center">
-              <Link to="/">Home</Link>
+            <li className="hover-bordered font-semibold flex justify-center content-center">
+              <Link className="" to="/">Home</Link>
             </li>
-            <li className="font-semibold flex justify-center content-center">
+            <li className="font-semibold hover-bordered flex justify-center content-center">
               <Link to="/menu">Menu</Link>
             </li>
-            <li className="font-semibold flex justify-center content-center">
+            <li className="font-semibold flex hover-bordered justify-center content-center">
               <Link to="/contact">Contact</Link>
             </li>
-            <li className="font-semibold flex justify-center content-center">
+            <li className="font-semibold flex justify-center hover-bordered content-center">
               <Link to="/about">About</Link>
             </li>
           </ul>

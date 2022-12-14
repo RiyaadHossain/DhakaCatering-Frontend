@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import FoodCard from "../../components/FoodCard";
 
 export default function Foods() {
+
+  const navigate = useNavigate()
+
   return (
     <div className="py-20">
       <h2 className="section-title">
@@ -13,7 +17,7 @@ export default function Foods() {
         <FoodCard />
       </div>
       <div className="text-center mt-10">
-        <button className="btn btn-wide">See More</button>
+        <button onClick={() => navigate('menu')} className="btn btn-wide">See More</button>
       </div>
     </div>
   );

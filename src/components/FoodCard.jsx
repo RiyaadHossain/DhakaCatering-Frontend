@@ -15,9 +15,11 @@ export default function FoodCard() {
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions items-center mt-2 justify-end">
           <p className="text-2xl font-semibold">1050৳</p>
-          <button title="Add to Cart" className="btn btn-info btn-square">
-            <FaCartPlus className="text-xl" />
-          </button>
+          <div className="tooltip tooltip-accent" data-tip="Add to Cart">
+            <button className="btn btn-info flex justify-center items-center btn-square">
+              <FaCartPlus className="text-xl" />
+            </button>
+          </div>
         </div>
         <button className="btn btn-outline btn-info mt-3">See Details</button>
       </div>
