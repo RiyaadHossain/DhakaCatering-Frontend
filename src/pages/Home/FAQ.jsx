@@ -29,7 +29,7 @@ export default function FAQ() {
     <div className="py-20 bg-slate-200">
       <h2 className="section-title">Frequently Asked Question</h2>
       {faqContent.map((faq, i) => (
-        <FAQBar title={faq.title} details={faq.details} />
+        <FAQBar key={i} title={faq.title} details={faq.details} />
       ))}
     </div>
   );

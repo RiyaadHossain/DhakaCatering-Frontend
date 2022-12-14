@@ -1,17 +1,67 @@
 import React from "react";
-import FeatureCard from "../../components/FeatureCard";
-import { MdEmojiFoodBeverage } from "react-icons/md"
-import { GrRestaurant } from "react-icons/gr"
-import { IoRestaurant } from "react-icons/io5"
-import { MdFastfood } from "react-icons/md"
+import { MdEmojiFoodBeverage } from "react-icons/md";
+import { GrRestaurant } from "react-icons/gr";
+import { IoRestaurant } from "react-icons/io5";
+import { MdFastfood } from "react-icons/md";
 
 export default function Feature() {
   return (
     <div className="py-20 flex justify-center items-center gap-8 md:gap-10 flex-wrap px-2">
-      <FeatureCard icon={<MdEmojiFoodBeverage/>} color='orange'/>
-      <FeatureCard icon={<GrRestaurant/>} color='sky'/>
-      <FeatureCard icon={<IoRestaurant/>} color='indigo'/>
-      <FeatureCard icon={<MdFastfood/>} color='rose' className='text'/>
+      <div className={`stats shadow bg-orange-300 max-w-[300px]`}>
+        <div className="stat flex items-center gap-5">
+          <div className="text-4xl">
+            <MdEmojiFoodBeverage />
+          </div>
+          <div>
+            <div className="stat-value text-2xl">Fresh Food</div>
+            <div className="text-xs">
+              21% more fresh and spicy foods are provided in Dhaka City
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`stats shadow bg-sky-300 max-w-[300px]`}>
+        <div className="stat flex items-center gap-5">
+          <div className="text-4xl">
+            <GrRestaurant />
+          </div>
+          <div>
+            <div className="stat-value text-2xl">Fresh Food</div>
+            <div className="text-xs">
+              21% more fresh and spicy foods are provided in Dhaka City
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`stats shadow bg-indigo-300 max-w-[300px]`}>
+        <div className="stat flex items-center gap-5">
+          <div className="text-4xl">
+            <IoRestaurant />
+          </div>
+          <div>
+            <div className="stat-value text-2xl">Fresh Food</div>
+            <div className="text-xs">
+              21% more fresh and spicy foods are provided in Dhaka City
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`stats shadow bg-rose-300 max-w-[300px]`}>
+        <div className="stat flex items-center gap-5">
+          <div className="text-4xl">
+            <MdFastfood />
+          </div>
+          <div>
+            <div className="stat-value text-2xl">Fresh Food</div>
+            <div className="text-xs">
+              21% more fresh and spicy foods are provided in Dhaka City
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
