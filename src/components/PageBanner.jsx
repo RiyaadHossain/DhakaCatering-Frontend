@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
 
-function PageBanner() {
+function PageBanner({bg_img}) {
   return (
-    <div>PageBanner</div>
-  )
+    <div
+      className="hero min-h-[25vh] mb-16"
+      style={{ backgroundImage: `url(${bg_img})` }}
+    >
+      <div className="hero-overlay bg-slate-800 bg-opacity-60"></div>
+      <div className="hero-content text-center text-white">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-5xl font-bold">Menu</h1>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default PageBanner
+export default PageBanner;
