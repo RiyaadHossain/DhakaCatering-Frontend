@@ -1,8 +1,12 @@
 import React from "react";
 import { HiShoppingCart } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { BiUserCircle } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+
+  const navigate = useNavigate()
+
   return (
     <div className="mx-4 mt-4">
       <div className="navbar bg-base-300 shadow-md px-2 rounded-full">
@@ -29,7 +33,9 @@ export default function Navbar() {
               className="menu menu-compact dropdown-content shadow-md mt-5 p-2 bg-base-200 rounded-box w-52 flex gap-3"
             >
               <li className="hover-bordered font-semibold flex justify-center content-center">
-                <Link className="" to="/">Home</Link>
+                <Link className="" to="/">
+                  Home
+                </Link>
               </li>
               <li className="font-semibold hover-bordered flex justify-center content-center">
                 <Link to="/menu">Menu</Link>
@@ -42,14 +48,19 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <a href="web" className="btn btn-ghost font-bold normal-case text-xl">
+          <Link
+            to="/"
+            className="btn hidden sm:flex btn-ghost font-bold normal-case text-xl"
+          >
             Dhaka Catering
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex gap-3">
             <li className="hover-bordered font-semibold flex justify-center content-center">
-              <Link className="" to="/">Home</Link>
+              <Link className="" to="/">
+                Home
+              </Link>
             </li>
             <li className="font-semibold hover-bordered flex justify-center content-center">
               <Link to="/menu">Menu</Link>
@@ -63,11 +74,14 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="mr-5 btn relative">
-            <HiShoppingCart className="text-2xl text-white" />
-            <span className="absolute -top-1 -right-1 bg-primary w-5 h-5 rounded-full text-center text-sm font-semibold text-black">
+          <div onClick={() => navigate('cart')} className="mr-5 cursor-pointer relative">
+            <HiShoppingCart className="text-2xl" />
+            <span className="absolute -top-1.5 -right-1.5 bg-primary w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold text-black">
               5
             </span>
+          </div>
+          <div className="mr-5 cursor-pointer relative">
+            <BiUserCircle className="text-2xl" />
           </div>
         </div>
       </div>

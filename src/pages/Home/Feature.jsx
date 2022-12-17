@@ -6,7 +6,7 @@ import { MdFastfood } from "react-icons/md";
 
 export default function Feature() {
   return (
-    <div className="py-20 flex justify-center items-center gap-8 md:gap-10 flex-wrap px-2">
+    <div className="pt-20 pb-8 flex justify-center items-center gap-8 md:gap-10 flex-wrap px-2">
       <div className={`stats shadow bg-orange-300 max-w-[300px]`}>
         <div className="stat flex items-center gap-5">
           <div className="text-4xl">
