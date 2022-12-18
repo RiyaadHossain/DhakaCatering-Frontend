@@ -3,7 +3,7 @@ import React from "react";
 function PageBanner({bg_img, title}) {
   return (
     <div
-      className="hero min-h-[22vh] mt-6 mb-16"
+      className="hero min-h-[22vh] mt-6"
       style={{ backgroundImage: `url(${bg_img})` }}
     >
       <div className="hero-overlay bg-slate-800 bg-opacity-60"></div>
