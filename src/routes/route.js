@@ -7,6 +7,8 @@ import FoodItem from "../pages/FoodItem/FoodItem";
 import Home from "../pages/Home/Home";
 import Menu from "../pages/Menu/Menu";
 import Order from "../pages/Order/Order";
+import SignIn from "../pages/SignIn/SignIn";
+import SignUp from "../pages/SignUp/SignUp";
 
 const routes = createBrowserRouter([
     {
@@ -40,6 +42,14 @@ const routes = createBrowserRouter([
             {
                 path: "/order/:id",
                 element: <Order />,
+            },
+            {
+                path: "/signup",
+                element: <SignUp />,
+            },
+            {
+                path: "/signin",
+                element: <SignIn />,
             },
         ],
     },

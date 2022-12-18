@@ -9,7 +9,7 @@ export default function MostSold() {
     <div className="py-20">
       <div className="text-center">
         <h2 className="section-title border-l-[5px] pl-3 border-x-sky-600 inline-block">
-          Most Sold Product
+          Most Sold Package
         </h2>
       </div>
       <div className="flex justify-center flex-wrap gap-8 px-4">

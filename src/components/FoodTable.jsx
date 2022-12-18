@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 
 export default function FoodTable() {
   return (
-    <div className="overflow-x-auto md:w-full w-">
+    <div className="overflow-x-auto md:w-full ">
       <table className="table w-full">
         {/* <!-- head --> */}
         <thead>
