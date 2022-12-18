@@ -76,7 +76,7 @@ export default function Navbar() {
         <div className="navbar-end">
           <div onClick={() => navigate('cart')} className="mr-5 cursor-pointer relative">
             <HiShoppingCart className="text-2xl" />
-            <span className="absolute -top-1.5 -right-1.5 bg-primary w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold text-black">
+            <span className="absolute -top-1.5 -right-1.5 bg-primary w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold text-slate-800">
               5
             </span>
           </div>
