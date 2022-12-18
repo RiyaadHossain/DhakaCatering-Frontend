@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PageBanner from "../../components/PageBanner";
+import signup from '../../assets/images/signin.jpg'; 
 
 export default function SignUp() {
   return (
-    <div className="pb-14">
-      <PageBanner title="Sign In" />
-      <div className="hero pt-12 min-h-screen bg-base-200">
+    <>
+      <PageBanner bg_img={signup} title="Sign Up" />
+      <div className="hero pt-12 min-h-screen bg-base-200 pb-12">
         <div className="hero-content gap-5 md:gap-14 flex-col lg:flex-row">
           <div className="text-center flex-1">
-            <h1 className="text-4xl font-bold">Sign In now!</h1>
+            <h1 className="text-4xl font-bold">Sign Up Now!</h1>
             <p className="py-6 max-w-2xl ">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
@@ -80,20 +81,20 @@ export default function SignUp() {
                 />
                 <label className="label">
                   <span className="label-text-alt">
-                    Already have an account?
-                    <Link className=" link link-hover link-info" to="">
+                    Already have an account? {" "}
+                    <Link className=" link link-hover link-info" to="/signin"> 
                       Sign In
                     </Link>
                   </span>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn">Sign In</button>
+                <button className="btn">Sign Up</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

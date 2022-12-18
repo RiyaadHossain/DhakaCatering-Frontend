@@ -12,7 +12,7 @@ export default function FoodItem() {
       <PageBanner bg_img={bg_img} title="Chicken Burger" />
 
       {/* ===================== First Section Start ===================== */}
-      <div className="flex flex-col md:flex-row flex-wrap items-center md:items-start gap-7 px-5 md:px-10">
+      <div className="flex pt-16 flex-col md:flex-row flex-wrap items-center md:items-start gap-7 px-5 md:px-10">
         <div className="flex-1 mb-7 md:mb-0">
           <img className="rounded-md" src={food_img} alt="" />
         </div>

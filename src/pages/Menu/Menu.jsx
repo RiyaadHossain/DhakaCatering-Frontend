@@ -7,7 +7,7 @@ export default function Menu() {
   return (
     <div className="pb-10">
       <PageBanner bg_img={bg_img} title="Menu" />
-      <div>
+      <div className="pt-16">
         <div className="mb-20 flex flex-wrap gap-8 md:gap-20 px-6 justify-center">
           <select className="select rounded-md bg-slate-700 text-white select-bordered w-full max-w-[250px] md:max-w-[300px]">
             <option selected>Filter by Category</option>

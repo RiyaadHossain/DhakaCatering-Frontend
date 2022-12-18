@@ -13,9 +13,9 @@ export default function About() {
   return (
     <div className="pb-14 bg-white">
       <PageBanner title="About" bg_img={bg_img} />
-      <div className="px-10">
+      <div className="pb-10 px-12 md:px-20 pt-16">
         {/* Our Mission */}
-        <div className="flex flex-col mb-20 md:mb-24 md:flex-row gap-8 flex-wrap items-center justify-center">
+        <div className="flex flex-col mb-20 md:mb-12 md:flex-row gap-8 flex-wrap items-center justify-center">
           <div className="flex-1">
             <img src={mission_bg} className="mx-auto rounded-3xl" alt="" />
           </div>
@@ -38,7 +38,7 @@ export default function About() {
           </div>
         </div>
         {/* Our Story */}
-        <div className="flex  mb-20 md:mb-24 flex-col md:flex-row gap-8 flex-wrap items-center justify-center">
+        <div className="flex  mb-20 md:mb-24 flex-col md:flex-row-reverse gap-8 flex-wrap items-center justify-center">
           <div className="flex-1">
             <img src={story_bg} className="mx-auto rounded-3xl" alt="" />
           </div>

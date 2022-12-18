@@ -6,9 +6,9 @@ export default function Order() {
   return (
     <div className="mb-14">
       <PageBanner bg_img={bg_img} title="Order" />
-      <h4 className="text-xl md:text-2xl font-bold text-center px-5 mb-5 md:mb-10">Please Fill up the Form to Confirm Your Order</h4>
+      <h4 className="text-xl md:text-2xl font-bold text-center pt-20 pb-5 mb-5 md:mb-10">Please Fill up the Form to Confirm Your Order</h4>
       <div className="flex items-center justify-center px-4 md:px-8">
-        <div className="card flex-shrink-0 w-full max-w-5xl shadow-2xl bg-base-200">
+        <div className="card flex-shrink-0 w-full max-w-5xl shadow-xl bg-base-200">
           <div className="card-body">
             <div className="flex gap-3 md:gap-6 flex-wrap">
               <div className="form-control flex-1">

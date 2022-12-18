@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <div className="">
       <PageBanner bg_img={bg_img} title="Contact" />
-      <div className="">
+      <div className="pt-16">
         <div className="text-center mb-10">
           <p className="text-center mb-3 font-semibold text-accent">
             Contact Us
@@ -19,7 +19,7 @@ export default function Contact() {
 
         {/* First Section */}
         <div className="flex justify-center px-5 flex-wrap gap-6">
-          <div className="card w-96 bg-base-100 text-center shadow-xl">
+          <div className="card w-96 bg-base-200 text-center shadow-lg">
             <div className="card-body items-center">
               <IoMdMailUnread className="text-3xl text-lime-500" />
               <h2 className="card-title">Email Adress</h2>
@@ -29,7 +29,7 @@ export default function Contact() {
               </p>
             </div>
           </div>
-          <div className="card w-96 bg-base-100 text-center shadow-xl">
+          <div className="card w-96 bg-base-200 text-center shadow-lg">
             <div className="card-body items-center">
               <FaPhoneAlt className="text-3xl text-red-500" />
               <h2 className="card-title">Phone Number</h2>
@@ -39,7 +39,7 @@ export default function Contact() {
               </p>
             </div>
           </div>
-          <div className="card w-96 bg-base-100 text-center shadow-xl">
+          <div className="card w-96 bg-base-200 text-center shadow-lg">
             <div className="card-body items-center">
               <HiBuildingOffice2 className="text-3xl text-amber-500" />
               <h2 className="card-title">Office Address</h2>
