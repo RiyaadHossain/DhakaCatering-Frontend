@@ -26,7 +26,7 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="py-20 bg-slate-200">
+    <div className="py-20 bg-slate-200 px-5">
       <h2 className="section-title">Frequently Asked Question</h2>
       {faqContent.map((faq, i) => (
         <FAQBar key={i} title={faq.title} details={faq.details} />
