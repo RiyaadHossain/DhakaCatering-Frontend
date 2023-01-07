@@ -6,6 +6,7 @@ import Contact from "../pages/Contact/Contact";
 import FoodItem from "../pages/FoodItem/FoodItem";
 import Home from "../pages/Home/Home";
 import Menu from "../pages/Menu/Menu";
+import NotFound from "../pages/NotFound/NotFound";
 import Order from "../pages/Order/Order";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
@@ -51,26 +52,12 @@ const routes = createBrowserRouter([
                 path: "/signin",
                 element: <SignIn />,
             },
+            {
+                path: "*",
+                element: <NotFound />,
+            },
         ],
     },
-    /*     {
-            path: "/dashboard",
-            element: <Dashboard />,
-            children: [
-                {
-                    path: "/dashboard",
-                    element: <ProductList />,
-                },
-                {
-                    path: "add-product",
-                    element: <AddProduct />,
-                },
-                {
-                    path: "update-product/:id",
-                    element: <UpdateProduct />,
-                },
-            ],
-        }, */
 ]);
 
 export default routes;
