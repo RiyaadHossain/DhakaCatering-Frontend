@@ -21,16 +21,6 @@ export default function SignIn() {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Riyad Hossain"
-                  className="input rounded-md input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
@@ -58,8 +48,9 @@ export default function SignIn() {
                   </span>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-6 flex flex-col gap-3">
                 <button className="btn">Sign In</button>
+                <button className="btn">Continue With Google</button>
               </div>
             </div>
           </div>

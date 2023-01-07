@@ -7,7 +7,7 @@ export default function FoodCard() {
   const navigate = useNavigate()
 
   return (
-    <div className="card w-80 bg-base-100 shadow-xl hover:-translate-y-3 transition-all">
+    <div className="card w-80 bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">
       <figure>
         <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
       </figure>

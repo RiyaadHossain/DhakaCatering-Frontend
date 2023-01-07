@@ -4,10 +4,14 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
-.section-title{
-  @apply text-3xl md:text-4xl text-center font-bold mb-12
+.section-title {
+  @apply text-3xl md:text-4xl text-center font-bold mb-12;
 }
 
-.display-none{
+.set-center {
+  @apply flex justify-center items-center;
+}
+
+.display-none {
   display: none;
 }

@@ -1,11 +1,9 @@
 import React from "react";
-import { HiShoppingCart } from "react-icons/hi";
-import { BiUserCircle } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import CartIn from "../components/CartIn";
+import UserIcon from "../components/ProfileIn";
 
 export default function Navbar() {
-
-  const navigate = useNavigate()
 
   return (
     <div className="mx-4 mt-4">
@@ -74,15 +72,8 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          <div onClick={() => navigate('cart')} className="mr-5 cursor-pointer relative">
-            <HiShoppingCart className="text-2xl" />
-            <span className="absolute -top-1.5 -right-1.5 bg-primary w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold text-slate-800">
-              5
-            </span>
-          </div>
-          <div className="mr-5 cursor-pointer relative">
-            <BiUserCircle className="text-2xl" />
-          </div>
+          <CartIn/>
+          <UserIcon/>
         </div>
       </div>
     </div>

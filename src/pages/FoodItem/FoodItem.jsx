@@ -1,12 +1,11 @@
 import React from "react";
+import Navigation from "./Navigation";
+import SuggestedFood from "./SuggestedFood";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-3.jpg";
 import food_img from "../../assets/images/hero-image-2.jpg";
-import Navigation from "./Navigation";
-import SuggestedFood from "./SuggestedFood";
 
 export default function FoodItem() {
-
   return (
     <div className="mb-14">
       <PageBanner bg_img={bg_img} title="Chicken Burger" />
@@ -38,9 +37,9 @@ export default function FoodItem() {
       </div>
       {/* ===================== First Section End ===================== */}
 
-      <div className="mt-16 px-12">
+      <div className="mt-16 px-6">
         <Navigation />
-        <SuggestedFood/>
+        <SuggestedFood />
       </div>
     </div>
   );

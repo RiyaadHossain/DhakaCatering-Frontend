@@ -71,6 +71,16 @@ export default function SignUp() {
               </div>
               <div className="form-control">
                 <label className="label">
+                  <span className="label-text">Occupation</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Businessman"
+                  className="input rounded-md input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
                   <span className="label-text">Address</span>
                 </label>
                 <textarea
@@ -88,8 +98,9 @@ export default function SignUp() {
                   </span>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-6 flex flex-col gap-3">
                 <button className="btn">Sign Up</button>
+                <button className="btn">Continue With Google</button>
               </div>
             </div>
           </div>
