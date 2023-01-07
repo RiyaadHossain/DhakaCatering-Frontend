@@ -15,3 +15,9 @@ html {
 .display-none {
   display: none;
 }
+
+@media only screen and (min-device-width: 1400px){
+  .flexGrowBigScreen{
+    @apply flex-grow
+  }
+}

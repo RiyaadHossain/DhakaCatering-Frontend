@@ -11,7 +11,7 @@ export default function Cart() {
     <div className="pb-10">
       <PageBanner title="Cart" bg_img={bg_img} />
       <div className="flex flex-wrap gap-8 pt-20 pb-6 px-3 md:px-6">
-        <div className="md:block hidden ">
+        <div className="md:block hidden flexGrowBigScreen">
           <FoodTable />
         </div>
         <FoodTable hidden={true} />
