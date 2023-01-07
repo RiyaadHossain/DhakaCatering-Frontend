@@ -16,29 +16,29 @@ export default function Cart() {
         </div>
         <FoodTable hidden={true} />
         <div className="flex-1 mt-8 md:mt-0 px-3">
-          <div className="flex justify-between items-center max-w-xs md:max-w-lg">
-            <h4 className="font-semibold text-lg">Sub-total</h4>
-            <p className="font-bold">$556</p>
+            <div className="flex justify-between items-center max-w-xs md:max-w-lg">
+              <h4 className="font-semibold text-lg">Sub-total</h4>
+              <p className="font-bold">$556</p>
+            </div>
+            <p className="mt-5 mb-4 md:max-w-lg">
+              You have to pay the total amount by Cash, Bkash or Card. Also, you
+              can order by directly talking with us on phone.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => navigate("/order/1")}
+                className="btn text-white rounded-md"
+              >
+                Checkout
+              </button>
+              <button
+                onClick={() => navigate("/menu")}
+                className="btn text-white rounded-md"
+              >
+                Continue Shopping
+              </button>
+            </div>
           </div>
-          <p className="mt-5 mb-4 md:max-w-lg">
-            You have to pay the total amount by Cash, Bkash or Card. Also, you
-            can order by directly talking with us on phone.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => navigate("/order/1")}
-              className="btn text-white rounded-md"
-            >
-              Checkout
-            </button>
-            <button
-              onClick={() => navigate("/menu")}
-              className="btn text-white rounded-md"
-            >
-              Continue Shopping
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
