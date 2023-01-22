@@ -6,7 +6,7 @@ export const storeToken = (userInfo) => {
 
 export const getToken = () => {
     let data = window.localStorage.getItem("userInfo")
-    const token = JSON.parse(data)?.token
+    const token = JSON.parse(data)
     return token
 }
 

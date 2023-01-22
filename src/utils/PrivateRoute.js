@@ -7,6 +7,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 const PrivateRoute = ({ children }) => {
 
     const token = getToken();
+    console.log(token);
     const { pathname } = useLocation();
     const navigate = useNavigate();
     if (!token) navigate("/signin");

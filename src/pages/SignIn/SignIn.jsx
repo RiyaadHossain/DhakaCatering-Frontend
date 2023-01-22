@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageBanner from "../../components/PageBanner";
 import signup from "../../assets/images/signin.jpg";
 import { useForm } from "react-hook-form";
+import { useUserSignInMutation } from "../../features/auth/authSlice";
+import { toast } from "react-hot-toast";
+import { storeToken } from "../../utils/token";
 
 export default function SignIn() {
-
   const {
     reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [signin, { data, isLoading, isSuccess, isError, error }] =
+    useUserSignInMutation();
+
+  const signinHandle = (useData) => {
+    signin(useData)
+    reset()
+  };
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading("Signing Up...", { id: "loading", duration: 800 });
+
+    if (isSuccess) {
+      toast.success("Signing Up...", { id: "succ" });
+      console.log(data);
+      storeToken(data.data.token);
+    }
+
+    if (isError) toast.error(error.data.error, { id: "err" });
+  }, [isLoading, isSuccess, isError, data, error]);
 
   return (
     <>
@@ -28,7 +51,7 @@ export default function SignIn() {
           </div>
           <div className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
             <div className="card-body">
-              <form>
+              <form onSubmit={handleSubmit(signinHandle)}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -37,7 +60,13 @@ export default function SignIn() {
                     type="email"
                     placeholder="riyadhossain@gmail.com"
                     className="input rounded-md input-bordered"
+                    {...register("email", { required: true })}
                   />
+                  {errors.email && (
+                    <span className="text-error text-xs text-left mt-1">
+                      Email is required
+                    </span>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -47,8 +76,13 @@ export default function SignIn() {
                     type="password"
                     placeholder="password"
                     className="input rounded-md input-bordered"
+                    {...register("password", { required: true })}
                   />
-
+                  {errors.password && (
+                    <span className="text-error text-xs text-left mt-1">
+                      Password is required
+                    </span>
+                  )}
                   <label className="label">
                     <span className="label-text-alt">
                       Don't have any account?{" "}
@@ -59,7 +93,9 @@ export default function SignIn() {
                   </label>
                 </div>
                 <div className="form-control mt-6 flex flex-col gap-3">
-                  <button className="btn">Sign In</button>
+                  <button type="submit" className="btn">
+                    Sign In
+                  </button>
                   {/* <button className="btn">Continue With Google</button> */}
                 </div>
               </form>
