@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Order from "../pages/Order/Order";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import PrivateRoute from "../utils/PrivateRoute";
 
 const routes = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/food-item/:id",
-                element: <FoodItem />,
+                element: <PrivateRoute><FoodItem /></PrivateRoute>,
             },
             {
                 path: "/contact",
@@ -38,11 +39,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/cart",
-                element: <Cart />,
+                element: <PrivateRoute><Cart /></PrivateRoute>,
             },
             {
                 path: "/order/:id",
-                element: <Order />,
+                element: <PrivateRoute><Order /></PrivateRoute>,
             },
             {
                 path: "/signup",
