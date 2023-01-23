@@ -1,9 +1,9 @@
 import React from "react";
+import IconSpinner from "./IconSpinner";
+import { getToken } from "../utils/token";
 import { HiUserCircle } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useUserPersistencyQuery } from "../features/auth/authAPI";
-import { getToken } from "../utils/token";
-import Loading from "./Loading";
 
 export default function ProfileIn() {
   const token = getToken();
@@ -11,13 +11,17 @@ export default function ProfileIn() {
   const { data, isFetching } = useUserPersistencyQuery(token);
   let user = { fullName: "", imageUrl: "", email: "", occupation: "" };
 
-  if (isFetching) return <Loading />;
+  if (isFetching) return <IconSpinner />;
 
   if (data?.status === "success") {
     user.email = data.data.email;
     user.fullName = data.data.fullName;
     user.imageUrl = data.data.imageUrl;
     user.occupation = data.data.occupation;
+  }
+
+  const signOut = () => {
+
   }
 
   return (
@@ -64,10 +68,10 @@ export default function ProfileIn() {
               <h4 className="text-2xl font-bold">{user.fullName}</h4>
               <span className="badge">{user.occupation}</span>
               <button
-                onClick={() => navigate("/profile")}
+                onClick={signOut}
                 className="btn btn-error btn-block mt-2"
               >
-                Log Out
+                Sign Out
               </button>
             </div>
           </div>
