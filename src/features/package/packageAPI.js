@@ -14,7 +14,18 @@ const packageSlice = apiSlice.injectEndpoints({
                 method: 'GET'
             })
         }),
+        updatePackage: build.mutation({
+            query: ({ token, id, packageData }) => ({
+                url: `/package/${id}`,
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: packageData
+            })
+        })
     })
 })
 
-export const { useGetPackagesQuery, useGetPackageDetailsQuery } = packageSlice
+export const { useGetPackagesQuery, useGetPackageDetailsQuery, useUpdatePackageMutation } = packageSlice

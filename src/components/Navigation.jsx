@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Description from "../pages/FoodItem/Description";
 import Reviews from "../pages/FoodItem/Reviews";
 
-export default function Navigation() {
+export default function Navigation({reviews, foodId}) {
   const [navig, setNavig] = useState("des");
 
   return (
@@ -22,11 +22,11 @@ export default function Navigation() {
             navig === "rev" ? "active" : null
           } flex flex-row gap-2 bg-slate-200 `}
         >
-          <p>Reviews (7)</p>
+          <p>Reviews ({reviews.length})</p>
         </button>
       </div>
       <div className="mt-8">
-        {navig === "des" ? <Description /> : <Reviews />}
+        {navig === "des" ? <Description /> : <Reviews reviews={reviews} foodId={foodId} />}
       </div>
     </div>
   );
