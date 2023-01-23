@@ -1,32 +1,16 @@
-import { apiSlice } from "../api/apiSlice";
+import { createSlice } from "@reduxjs/toolkit"
 
-const authSlice = apiSlice.injectEndpoints({
-    endpoints: (build) => ({
-        userPersistency: build.query({
-            query: (token) => ({
-                url: "/auth/initial",
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-        }),
-        userSignUp: build.mutation({
-            query: (data) => ({
-                url: '/auth/signup',
-                method: 'POST',
-                body: data
-            })
-        }),
-        userSignIn: build.mutation({
-            query: (data) => ({
-                url: '/auth/signin',
-                method: 'POST',
-                body: data
-            })
-        }),
-    })
+const initialState = { user: {} }
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        userPersistencyReducer: (state, { payload }) => {
+            state.user = payload
+        }
+    }
 })
 
-export const { useUserPersistencyQuery, useUserSignUpMutation, useUserSignInMutation } = authSlice
+export const { userPersistencyReducer } = authSlice.actions
+export default authSlice.reducer

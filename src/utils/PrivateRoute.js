@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getToken } from "./token";
 import Loading from "../components/Loading";
-import { useUserPersistencyQuery } from "../features/auth/authSlice";
+import { useUserPersistencyQuery } from "../features/auth/authAPI";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
 
     const token = getToken();
-    console.log(token);
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    if (!token) navigate("/signin");
     const { isFetching, isError, data } = useUserPersistencyQuery(token);
+
+    useEffect(() => {
+        if (!token) navigate("/signin");
+        if (isError) navigate('/signin');
+    }, [token, isError, navigate])
+
     const email = data?.data?.email;
 
     if (isFetching) return <Loading />
 
-    if (isError) navigate('/signin');
 
     if (!email) return <Navigate to="/signin" state={{ path: pathname }} />
 

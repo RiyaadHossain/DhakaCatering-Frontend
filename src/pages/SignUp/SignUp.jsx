@@ -6,7 +6,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useUserSignUpMutation } from "../../features/auth/authSlice";
+import { useUserSignUpMutation } from "../../features/auth/authAPI";
 import { toast } from "react-hot-toast";
 import { useRef } from "react";
 
@@ -51,7 +51,6 @@ export default function SignUp() {
         imageUrl: data.data.url,
       };
 
-      console.log(userData);
       signupFunc(userData);
     } else {
       toast.error("Something went wrong");

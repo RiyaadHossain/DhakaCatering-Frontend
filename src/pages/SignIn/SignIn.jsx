@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PageBanner from "../../components/PageBanner";
 import signup from "../../assets/images/signin.jpg";
 import { useForm } from "react-hook-form";
-import { useUserSignInMutation } from "../../features/auth/authSlice";
+import { useUserSignInMutation } from "../../features/auth/authAPI";
 import { toast } from "react-hot-toast";
 import { storeToken } from "../../utils/token";
+import { userPersistencyReducer } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function SignIn() {
+  const navigate = useNavigate()
+  const distaptch = useDispatch();
+
   const {
     reset,
     register,
@@ -19,8 +24,8 @@ export default function SignIn() {
     useUserSignInMutation();
 
   const signinHandle = (useData) => {
-    signin(useData)
-    reset()
+    signin(useData);
+    reset();
   };
 
   useEffect(() => {
@@ -28,13 +33,14 @@ export default function SignIn() {
       toast.loading("Signing Up...", { id: "loading", duration: 800 });
 
     if (isSuccess) {
-      toast.success("Signing Up...", { id: "succ" });
-      console.log(data);
       storeToken(data.data.token);
+      toast.success("Signed In", { id: "succ" });
+      distaptch(userPersistencyReducer(data.data.user));
+      navigate('/')
     }
 
     if (isError) toast.error(error.data.error, { id: "err" });
-  }, [isLoading, isSuccess, isError, data, error]);
+  }, [isLoading, isSuccess, isError, data, error, distaptch, navigate]);
 
   return (
     <>
