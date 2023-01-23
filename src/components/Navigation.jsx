@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Description from "./Description";
-import Reviews from "./Reviews";
+import Description from "../pages/FoodItem/Description";
+import Reviews from "../pages/FoodItem/Reviews";
 
 export default function Navigation() {
   const [navig, setNavig] = useState("des");

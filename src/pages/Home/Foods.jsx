@@ -9,7 +9,7 @@ export default function Foods() {
   return (
     <div className="py-20">
       <h2 className="section-title">
-        Discover Our Food
+        Discover Our Items
       </h2>
       <div className="flex justify-center flex-wrap gap-8 px-4">
         <FoodCard />

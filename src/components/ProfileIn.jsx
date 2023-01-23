@@ -1,8 +1,8 @@
 import React from "react";
 import IconSpinner from "./IconSpinner";
-import { getToken } from "../utils/token";
 import { HiUserCircle } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { clearToken, getToken } from "../utils/token";
 import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function ProfileIn() {
@@ -21,7 +21,8 @@ export default function ProfileIn() {
   }
 
   const signOut = () => {
-
+    clearToken()
+    window.location.reload()
   }
 
   return (
@@ -29,7 +30,7 @@ export default function ProfileIn() {
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
           <div className="cursor-pointer relative">
-            {user.imageUrl ? (
+            {user.imageUrl  ? (
               <div className="avatar">
                 <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img alt="" src={user.imageUrl} />

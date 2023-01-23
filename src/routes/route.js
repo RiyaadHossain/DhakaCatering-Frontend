@@ -8,6 +8,7 @@ import Home from "../pages/Home/Home";
 import Menu from "../pages/Menu/Menu";
 import NotFound from "../pages/NotFound/NotFound";
 import Order from "../pages/Order/Order";
+import PackageDetails from "../pages/PackageDetails.jsx/PackageDetails";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "../utils/PrivateRoute";
@@ -28,6 +29,10 @@ const routes = createBrowserRouter([
             {
                 path: "/food-item/:id",
                 element: <PrivateRoute><FoodItem /></PrivateRoute>,
+            },
+            {
+                path: "/package/:id",
+                element: <PrivateRoute><PackageDetails /></PrivateRoute>,
             },
             {
                 path: "/contact",

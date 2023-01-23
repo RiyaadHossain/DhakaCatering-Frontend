@@ -10,3 +10,6 @@ export const getToken = () => {
     return token
 }
 
+export const clearToken = () => {
+    window.localStorage.clear()
+}
