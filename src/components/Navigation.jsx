@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useGetReviewsQuery } from "../features/review/reviewAPI";
 import Description from "../pages/FoodItem/Description";
 import Reviews from "../pages/FoodItem/Reviews";
+import Loading from "./Loading";
 
-export default function Navigation({reviews, foodId}) {
+export default function Navigation({ foodId }) {
   const [navig, setNavig] = useState("des");
+  const { data, isFetching } = useGetReviewsQuery();
+
+  if (isFetching) return <Loading />;
 
   return (
     <div className="">
@@ -22,11 +27,11 @@ export default function Navigation({reviews, foodId}) {
             navig === "rev" ? "active" : null
           } flex flex-row gap-2 bg-slate-200 `}
         >
-          <p>Reviews ({reviews.length})</p>
+          <p>Reviews ({data.reviews.length})</p>
         </button>
       </div>
       <div className="mt-8">
-        {navig === "des" ? <Description /> : <Reviews reviews={reviews} foodId={foodId} />}
+        {navig === "des" ? <Description /> : <Reviews reviews={data.reviews} foodId={foodId} />}
       </div>
     </div>
   );

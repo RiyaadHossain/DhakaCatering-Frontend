@@ -6,31 +6,30 @@ import { getToken } from "../../utils/token";
 import Loading from "../../components/Loading";
 import ReviewCard from "../../components/ReviewCard";
 import { useUserPersistencyQuery } from "../../features/auth/authAPI";
-import {
-  useGetReviewsQuery,
-  usePostReviewMutation,
-} from "../../features/review/reviewAPI";
+import { usePostReviewMutation } from "../../features/review/reviewAPI";
 
 export default function Reviews({ reviews, foodId }) {
-  const { reset, register, handleSubmit, formState: { errors }, } = useForm();
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const token = getToken();
-  let userReviewExist = false
-  const { data, isFetching } = useGetReviewsQuery();
+  let userReviewExist = false;
   const { data: user } = useUserPersistencyQuery(token);
-  const [postReview, { isLoading, isError, isSuccess }] = usePostReviewMutation();
+  const [postReview, { isLoading, isError, isSuccess }] =
+    usePostReviewMutation();
 
   useEffect(() => {
-    
-    if(isLoading) toast.loading("Posting...", {id: 'postLoad', duration: 800 })
-    if(isSuccess) toast.success("Posted your Review successfully", {id: 'postSucc' })
-    if(isError) toast.error("Sorry! Cloudn't post your review", {id: 'postErr' })
+    if (isLoading) toast.loading("Posting...", { id: "postLoad", duration: 800 });
+    if (isSuccess) toast.success("Posted your Review successfully", { id: "postSucc" });
+    if (isError) toast.error("Sorry! Cloudn't post your review", { id: "postErr" });
+  }, [isLoading, isSuccess, isError]);
 
-  }, [isFetching, isLoading, isSuccess, isError])
+  if (isLoading) return <Loading />;
 
-  if (isFetching) return <Loading />
-  if (isLoading) return <Loading />
-  
   const handleReview = (reviewData) => {
     reviewData = {
       foodId,
@@ -40,15 +39,17 @@ export default function Reviews({ reviews, foodId }) {
     };
 
     postReview({ token, reviewData });
-    reset()
+    reset();
   };
-  
-  reviews = data.reviews.filter(review => review.foodId === foodId)
 
-  const userReview = reviews.filter(review => review.userId === user.data._id)
-  console.log(userReview);
+  reviews = reviews.filter((review) => review.foodId === foodId);
+
+  const userReview = reviews.filter(
+    (review) => review.userId === user.data._id
+  );
+
   if (userReview.length > 1) {
-    userReviewExist = true
+    userReviewExist = true;
   }
 
   return (
@@ -70,6 +71,11 @@ export default function Reviews({ reviews, foodId }) {
               Review is required
             </span>
           )}
+          {userReviewExist && (
+            <span className="text-error text-xs md:text-sm relative -top-2">
+              You can't post more than two reviews
+            </span>
+          )}
           <button
             type="submit"
             className="btn md:btn-wide w-32 rounded-md text-white"
@@ -77,12 +83,13 @@ export default function Reviews({ reviews, foodId }) {
           >
             Submit
           </button>
-          {userReviewExist && <span className="text-error text-xs md:text-sm relative -top-2">You can't post more than two reviews in a food section</span>}
         </form>
       </div>
       <div className="mt-12 grid md:grid-cols-2 md:gap-10">
         {reviews.length ? (
-          reviews.map((review) => <ReviewCard review={review} user={user.data} />)
+          reviews.map((review) => (
+            <ReviewCard review={review} user={user.data} />
+          ))
         ) : (
           <p className="text-xl font-semibold text-slate-600">
             No Reviews yet!

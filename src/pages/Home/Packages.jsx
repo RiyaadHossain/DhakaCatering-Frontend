@@ -10,7 +10,6 @@ export default function Packages() {
   if (isFetching) return <Loading />;
 
   const packages = data.data.filter((item) => item.status === "active");
-  console.log(packages);
 
   return (
     <div className="py-20">

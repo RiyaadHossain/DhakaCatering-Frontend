@@ -3,19 +3,20 @@ import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-3.jpg";
 import food_img from "../../assets/images/hero-image-2.jpg";
 import Navigation from "../../components/Navigation";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetPackageDetailsQuery } from "../../features/package/packageAPI";
 import Loading from "../../components/Loading";
 
 export default function PackageDetails() {
   const { id } = useParams();
+  const navigate = useNavigate()
   const { isFetching, data } = useGetPackageDetailsQuery(id);
   if (isFetching) return <Loading />;
 
   const {
+    _id,
     name,
     price,
-    reviews,
     /* viewCount, sellCount, */ category,
     description,
     image,
@@ -57,15 +58,13 @@ export default function PackageDetails() {
             </div>
           </div>
           <p className="pt-4 font-light max-w-lg">{description}</p>
-          <div className="mt-5">
-            <button className="btn rounded-md btn-wide">Add to Cart</button>
-          </div>
+            <button onClick={() => navigate(`/order/${_id}`)} className="btn mt-5 rounded-md btn-wide">Procced to Order</button>
         </div>
       </div>
       {/* ===================== First Section End ===================== */}
 
       <div className="mt-16 px-6">
-        <Navigation reviews={reviews} foodId={id} />
+        <Navigation foodId={id} />
         {/* <SuggestedFood /> */}
       </div>
     </div>

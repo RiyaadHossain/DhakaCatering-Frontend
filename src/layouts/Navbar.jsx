@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartIn from "../components/CartIn";
+import WishListIn from "../components/WishListIn";
 import UserIcon from "../components/ProfileIn";
 
 export default function Navbar() {
@@ -61,7 +61,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="font-semibold hover-bordered flex justify-center content-center">
-              <Link to="/menu">Menu</Link>
+              <Link to="/menu">Package</Link>
             </li>
             <li className="font-semibold flex hover-bordered justify-center content-center">
               <Link to="/contact">Contact</Link>
@@ -72,7 +72,7 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          <CartIn/>
+          <WishListIn/>
           <UserIcon/>
         </div>
       </div>

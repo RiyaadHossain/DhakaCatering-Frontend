@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import WishList from "../pages/WishList/WishList";
 import Main from "../layouts/Main";
 import About from "../pages/About/About";
 import Cart from "../pages/Cart/Cart";
@@ -45,6 +46,10 @@ const routes = createBrowserRouter([
             {
                 path: "/cart",
                 element: <PrivateRoute><Cart /></PrivateRoute>,
+            },
+            {
+                path: "/wishlist",
+                element: <PrivateRoute><WishList /></PrivateRoute>,
             },
             {
                 path: "/order/:id",
