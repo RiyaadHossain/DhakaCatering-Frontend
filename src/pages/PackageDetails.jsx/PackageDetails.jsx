@@ -3,14 +3,27 @@ import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-3.jpg";
 import food_img from "../../assets/images/hero-image-2.jpg";
 import Navigation from "../../components/Navigation";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetPackageDetailsQuery } from "../../features/package/packageAPI";
 import Loading from "../../components/Loading";
+import { useCreateOrderMutation } from "../../features/order/orderAPI";
+import { getToken } from "../../utils/token";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import SuggestedFood from "./SuggestedPackage";
 
 export default function PackageDetails() {
+  const token = getToken();
   const { id } = useParams();
-  const navigate = useNavigate()
   const { isFetching, data } = useGetPackageDetailsQuery(id);
+  const [createOrder, { isLoading, isSuccess }] = useCreateOrderMutation();
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading("Proccessing...", { id: "load", duration: 800 });
+    if (isSuccess) toast.success("Order Create", { id: "succ" });
+  }, [isLoading, isSuccess]);
+
   if (isFetching) return <Loading />;
 
   const {
@@ -22,6 +35,10 @@ export default function PackageDetails() {
     image,
     allItems,
   } = data?.data;
+
+  const handleOrder = () => {
+    createOrder({ token, orderData: { foodId: _id } });
+  };
 
   return (
     <div className="mb-14">
@@ -58,14 +75,54 @@ export default function PackageDetails() {
             </div>
           </div>
           <p className="pt-4 font-light max-w-lg">{description}</p>
-            <button onClick={() => navigate(`/order/${_id}`)} className="btn mt-5 rounded-md btn-wide">Procced to Order</button>
+          <label
+            htmlFor="my-modal-order"
+            className="btn mt-5 rounded-md btn-wide"
+          >
+            Order Now
+          </label>
         </div>
       </div>
       {/* ===================== First Section End ===================== */}
 
       <div className="mt-16 px-6">
         <Navigation foodId={id} />
-        {/* <SuggestedFood /> */}
+        <SuggestedFood foodId={_id} />
+      </div>
+
+      {/* Modal Content */}
+      <input type="checkbox" id="my-modal-order" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box border-2 border-gray-400">
+          <h3 className="font-bold text-xl text-center">
+            To Confirm the Order
+          </h3>
+          <p className="py-4">
+            Please contact with the following numbers:
+            <br />
+            <div className="flex items-center gap-2 mt-2">
+              <span className="font-bold">GP:</span> 01703790978
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="font-bold">BL:</span> 01703790978
+            </div>
+          </p>
+          <div className="modal-action">
+            <label
+              htmlFor="my-modal-order"
+              className="btn rounded-md btn-error"
+            >
+              No
+            </label>
+            <label
+              htmlFor="my-modal-order"
+              onClick={handleOrder}
+              className="btn rounded-md btn-success"
+            >
+              Ok
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );

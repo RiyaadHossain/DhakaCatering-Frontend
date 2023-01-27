@@ -22,12 +22,12 @@ export default function ReviewCard({ review, user }) {
   }
 
   return (
-    <div className="mb-6 flex max-w-2xl gap-5 items-start justify-between">
+    <div className="mb-6 max-w-2xl relative bg-slate-200 p-5 rounded-md">
       <div>
         <h3 className="font-semibold text-lg mb-1">{review.name}</h3>
         <p className="font-light max-w-[650px]">{review.review}</p>
       </div>
-      {review.userId === user._id && <button onClick={() => deleteHandle(review._id)} className="mt-2"><TiDelete className="text-3xl text-red-600"/></button>}
+      {review.userId === user._id && <button onClick={() => deleteHandle(review._id)} className="absolute top-2 right-2"><TiDelete className="text-3xl text-red-600"/></button>}
     </div>
   );
 }

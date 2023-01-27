@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import PackageCard from "../../components/PackageCard";
 import { useGetPackagesQuery } from "../../features/package/packageAPI";
 
 export default function Packages() {
-  //   const navigate = useNavigate();
-  const { data, isFetching, /* isError */ } = useGetPackagesQuery();
+  const navigate = useNavigate();
+  const { data, isFetching /* isError */ } = useGetPackagesQuery();
 
   if (isFetching) return <Loading />;
 
@@ -19,11 +20,11 @@ export default function Packages() {
           <PackageCard item={item} />
         ))}
       </div>
-      {/* <div className="text-center mt-10">
-        <button onClick={() => navigate("menu")} className="btn btn-wide">
-          See Details
+      <div className="text-center mt-10">
+        <button onClick={() => navigate("/menu")} className="btn btn-wide">
+          See More
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }

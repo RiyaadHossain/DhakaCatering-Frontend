@@ -6,19 +6,20 @@ import Foods from "./Foods";
 // import MostSold from "./MostSold";
 import Packages from "./Packages";
 import Testimonials from "./Testimonials";
-import TrendingItem from "./TrendingItem";
+// import TrendingItem from "./TrendingItem";
 
 export default function Home() {
+
   return (
     <div>
       <Banner />
       <Feature />
-      <Packages/>
+      <Packages />
       <Foods />
-      <TrendingItem />
+      {/* <TrendingItem /> */}
       {/* <MostSold/> */}
-      <FAQ/>
-      <Testimonials/>
+      <FAQ />
+      <Testimonials />
     </div>
   );
 }

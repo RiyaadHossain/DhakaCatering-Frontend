@@ -1,17 +1,29 @@
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useGetWishlistsQuery } from "../features/wishlist/wishlist";
 import { getToken } from "../utils/token";
 import IconSpinner from "./IconSpinner";
 
 export default function WishListIn() {
+
   const token = getToken();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const userExist = Object.keys(user).length;
   const { data, isFetching } = useGetWishlistsQuery(token);
 
   if (isFetching) return <IconSpinner />;
-  const totalWishlists = data.wishLists.length;
+  const totalWishlists = data?.wishLists?.length;
+
+  const navigateWishlist = () => {
+    if (!userExist) {
+      navigate("/signin");
+      return;
+    }
+    navigate("wishlist");
+  };
 
   return (
     <div className="dropdown dropdown-end mr-2">
@@ -20,7 +32,7 @@ export default function WishListIn() {
           <div className="cursor-pointer relative">
             <AiOutlineHeart className="text-3xl" />
             <span className="absolute -top-1.5 -right-1.5 bg-primary w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold text-slate-800">
-              {totalWishlists}
+              {totalWishlists ? totalWishlists : 0}
             </span>
           </div>
         </div>
@@ -31,7 +43,8 @@ export default function WishListIn() {
       >
         <div className="card-body">
           <span className="font-bold text-lg">
-            {totalWishlists} {totalWishlists > 1 ? "Items" : "Item"}
+            {totalWishlists ? totalWishlists : 0}{" "}
+            {totalWishlists > 1 ? "Items" : "Item"}
           </span>
           <span className="font-light text-sm">
             You can save your favourite Item for future order
@@ -39,7 +52,7 @@ export default function WishListIn() {
           {/* <span className="text-sky-600 font-semibold">Subtotal: $999</span> */}
           <div className="card-actions">
             <button
-              onClick={() => navigate("wishlist")}
+              onClick={navigateWishlist}
               className="btn btn-primary btn-sm btn-block"
             >
               View Items

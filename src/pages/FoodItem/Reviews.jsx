@@ -16,6 +16,7 @@ export default function Reviews({ reviews, foodId }) {
     formState: { errors },
   } = useForm();
 
+  let userReview;
   const token = getToken();
   let userReviewExist = false;
   const { data: user } = useUserPersistencyQuery(token);
@@ -23,9 +24,12 @@ export default function Reviews({ reviews, foodId }) {
     usePostReviewMutation();
 
   useEffect(() => {
-    if (isLoading) toast.loading("Posting...", { id: "postLoad", duration: 800 });
-    if (isSuccess) toast.success("Posted your Review successfully", { id: "postSucc" });
-    if (isError) toast.error("Sorry! Cloudn't post your review", { id: "postErr" });
+    if (isLoading)
+      toast.loading("Posting...", { id: "postLoad", duration: 800 });
+    if (isSuccess)
+      toast.success("Posted your Review successfully", { id: "postSucc" });
+    if (isError)
+      toast.error("Sorry! Cloudn't post your review", { id: "postErr" });
   }, [isLoading, isSuccess, isError]);
 
   if (isLoading) return <Loading />;
@@ -42,14 +46,13 @@ export default function Reviews({ reviews, foodId }) {
     reset();
   };
 
-  reviews = reviews.filter((review) => review.foodId === foodId);
+  if (Array.isArray(reviews)) {
+    reviews = reviews?.filter((review) => review.foodId === foodId);
+    userReview = reviews.filter((review) => review.userId === user.data._id);
 
-  const userReview = reviews.filter(
-    (review) => review.userId === user.data._id
-  );
-
-  if (userReview.length > 1) {
-    userReviewExist = true;
+    if (userReview.length > 1) {
+      userReviewExist = true;
+    }
   }
 
   return (
@@ -85,8 +88,8 @@ export default function Reviews({ reviews, foodId }) {
           </button>
         </form>
       </div>
-      <div className="mt-12 grid md:grid-cols-2 md:gap-10">
-        {reviews.length ? (
+      <div className="mt-12 grid md:grid-cols-2 md:gap-6">
+        {reviews?.length ? (
           reviews.map((review) => (
             <ReviewCard review={review} user={user.data} />
           ))

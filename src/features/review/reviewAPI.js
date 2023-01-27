@@ -3,8 +3,8 @@ import { apiSlice } from "../api/apiSlice";
 const reviewSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
         getReviews: build.query({
-            query: () => ({
-                url: "/review",
+            query: ({foodId}) => ({
+                url: `/review?foodId=${foodId}`,
                 method: 'GET'
             }),
             providesTags: ["Review"]

@@ -9,8 +9,10 @@ import {
   usePostWishlistMutation,
 } from "../features/wishlist/wishlist";
 import { getToken } from "../utils/token";
+import { useSelector } from "react-redux";
 
 export default function PackageCard({ item }) {
+  let wishListed;
   const token = getToken();
   const navigate = useNavigate();
   const { _id, name, price, image, category, description } = item;
@@ -19,14 +21,21 @@ export default function PackageCard({ item }) {
     usePostWishlistMutation();
   const [deleteWishlist, { isSuccess: deleteSuccess }] =
     useDeleteWishlistMutation();
+  const { user } = useSelector((state) => state.auth);
+  const userExist = Object.keys(user).length;
 
   useEffect(() => {
     if (isSuccess) toast.success("Added to Wishlist", { id: "succ" });
     if (isError) toast.error(error.data.error, { id: "err" });
-    if (deleteSuccess) toast.success("Removed from WishList", { id: "succDelete" });
+    if (deleteSuccess)
+      toast.success("Removed from WishList", { id: "succDelete" });
   }, [isError, isSuccess, error, deleteSuccess]);
 
   const addWishlist = () => {
+    if (!userExist) {
+      navigate("/signin")
+      return
+    }
     postWishlist({ token, foodId: _id });
   };
 
@@ -34,7 +43,9 @@ export default function PackageCard({ item }) {
     deleteWishlist({ token, foodId: _id });
   };
 
-  const wishListed = data.wishLists.find((item) => item.foodId === _id);
+  if (userExist) {
+    wishListed = data.wishLists.find((item) => item.foodId === _id);
+  }
 
   return (
     <div className="card w-96 h-[600px] bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">

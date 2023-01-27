@@ -7,6 +7,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         userPersistencyReducer: (state, { payload }) => {
+            console.log(payload);
             state.user = payload
         }
     }

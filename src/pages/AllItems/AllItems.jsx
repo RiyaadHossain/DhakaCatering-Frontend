@@ -1,13 +1,13 @@
 import React from "react";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-2.jpg";
-import { useGetPackagesQuery } from "../../features/package/packageAPI";
-import PackageCard from "../../components/PackageCard";
+import { useGetItemsQuery } from "../../features/item/itemAPI";
 import Loading from "../../components/Loading";
+import FoodCard from "../../components/FoodCard";
 
-export default function Menu() {
-  const { data, isFetching } = useGetPackagesQuery();
-  if(isFetching) return <Loading/>
+export default function AllItems() {
+  const { data, isFetching } = useGetItemsQuery();
+  if (isFetching) return <Loading />;
 
   return (
     <div className="pb-10">
@@ -56,7 +56,7 @@ export default function Menu() {
         </div>
         <div className="flex justify-center flex-wrap gap-8 px-4 md:px-8 lg:px-24">
           {data.data.map((item) => (
-            <PackageCard item={item} />
+            <FoodCard item={item} />
           ))}
         </div>
         <div className="text-center mt-14">

@@ -13,6 +13,7 @@ import PackageDetails from "../pages/PackageDetails.jsx/PackageDetails";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "../utils/PrivateRoute";
+import AllItems from "../pages/AllItems/AllItems";
 
 const routes = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
             {
                 path: "/menu",
                 element: <Menu />,
+            },
+            {
+                path: "/all-items",
+                element: <AllItems />,
             },
             {
                 path: "/food-item/:id",
