@@ -6,6 +6,15 @@ export default function SelectedItem({
   totalPrice,
   setTotalPrice,
 }) {
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    selItems.forEach((item) => {
+      totalPrice += item.totalPrice;
+    });
+    setTotalPrice(totalPrice);
+    return totalPrice;
+  };
+
   const handleCheck = (e) => {
     let { checked, value } = e.target;
     value = JSON.parse(value);
@@ -18,11 +27,7 @@ export default function SelectedItem({
       setSelItems(selItems);
     }
 
-    totalPrice = 0;
-    selItems.forEach((item) => {
-      totalPrice += item.price;
-    });
-    setTotalPrice(totalPrice);
+    calculateTotalPrice();
   };
 
   const increase = (id) => {
@@ -31,6 +36,8 @@ export default function SelectedItem({
     selectedItem.qty = selectedItem.qty + 1;
     selectedItem.totalPrice = selectedItem.price * selectedItem.qty;
     setSelItems([...restItems, selectedItem]);
+
+    calculateTotalPrice();
   };
 
   const decrease = (id) => {
@@ -41,6 +48,8 @@ export default function SelectedItem({
     }
     selectedItem.totalPrice = selectedItem.price * selectedItem.qty;
     setSelItems([...restItems, selectedItem]);
+
+    calculateTotalPrice();
   };
 
   selItems = selItems.sort((a, b) => a.price - b.price);

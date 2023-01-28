@@ -1,28 +1,41 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { getToken } from "../../utils/token";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-2.jpg";
-import { useUserPersistencyQuery } from "../../features/auth/authAPI";
 import SelectItems from "./ItemModal";
 import { useState } from "react";
+import { useCreateOrderRequestMutation } from "../../features/orderRequest/orderRequestAPI";
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { getToken } from "../../utils/token";
 
 export default function Order() {
+  const token = getToken()
   let [selItems, setSelItems] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
-  const token = getToken();
-  const { data } = useUserPersistencyQuery(token);
+  const [createOrderRequest, { isSuccess }] = useCreateOrderRequestMutation();
 
-  const { _id } = data?.data;
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  console.log(_id);
-  const handleOrder = (orderData) => {
-    console.log(orderData);
+  useEffect(() => {
+    if (isSuccess)
+      toast.success("Your order request is submitted", { id: "succ" });
+  }, [isSuccess]);
+
+  const handleOrder = (orderRequestData) => {
+    const allItems = selItems.map((item) => {
+      return { id: item._id, qty: item.qty, totalPrice: item.totalPrice };
+    });
+    orderRequestData = { allItems, totalPrice };
+    createOrderRequest({orderRequestData, token})
+    reset();
+    selItems([]);
+    setTotalPrice(0);
   };
 
   return (
@@ -76,9 +89,9 @@ export default function Order() {
                   )}
                 </div>
               </div>
-              <div className="mt-4 flex gap-2">
+              <div className="mt-4 flex">
                 <p>
-                  <span className="font-semibold">Items Selected:</span>
+                  <span className="font-semibold">Items Selected:</span>{" "}
                   {selItems.length}
                 </p>
                 <p>

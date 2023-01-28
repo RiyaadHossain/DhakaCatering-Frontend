@@ -14,7 +14,7 @@ export default function Foods() {
     <div className="py-20">
       <h2 className="section-title">Discover Our Items</h2>
       <div className="flex justify-center flex-wrap gap-8 px-4">
-        {data.data.slice(0, 3).map(item => <FoodCard item={item} />)}
+        {data.data.slice(0, 3).map(item => <FoodCard key={item._id} item={item} />)}
       </div>
       <div className="text-center mt-10">
         <button onClick={() => navigate("all-items")} className="btn btn-wide">

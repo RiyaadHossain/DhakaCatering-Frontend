@@ -17,7 +17,7 @@ export default function Packages() {
       <h2 className="section-title">Standard Packages</h2>
       <div className="flex justify-center flex-wrap gap-8 px-4">
         {packages.map((item) => (
-          <PackageCard item={item} />
+          <PackageCard key={item._id} item={item} />
         ))}
       </div>
       <div className="text-center mt-10">

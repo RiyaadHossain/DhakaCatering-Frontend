@@ -17,7 +17,7 @@ export default function ItemModal({
   const handleCheck = (e) => {
     let { checked, value } = e.target;
     value = JSON.parse(value);
-
+    value = { ...value, totalPrice: value.price };
     if (checked) {
       selItems = [...selItems, value];
       setSelItems(selItems);
@@ -25,16 +25,21 @@ export default function ItemModal({
       selItems = selItems.filter((item) => item._id !== value._id);
       setSelItems(selItems);
     }
- 
+
     totalPrice = 0;
     selItems.forEach((item) => {
-      totalPrice += item.price;
+      totalPrice += item.totalPrice;
     });
     setTotalPrice(totalPrice);
   };
 
-  const itemsId = selItems.map(item => item._id)
-  const unselectedItems = items.filter(item => !(itemsId.includes(item._id)))
+  const resetItems = () => {
+    setSelItems([]);
+    setTotalPrice(0);
+  };
+
+  const itemsId = selItems.map((item) => item._id);
+  const unselectedItems = items.filter((item) => !itemsId.includes(item._id));
 
   return (
     <div>
@@ -109,6 +114,7 @@ export default function ItemModal({
             {/* ------------------ Table ^ ------------------ */}
             <div className="modal-action">
               <label
+                onClick={resetItems}
                 htmlFor="my-modal"
                 className="btn rounded-md btn-sm btn-error"
               >
