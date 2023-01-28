@@ -7,7 +7,7 @@ export default function SuggestedItem({ foodId }) {
   const { data, isFetching } = useGetItemsQuery();
 
   if (isFetching) return <Loading />;
-  const items = data.data.slice(0, 10).filter((item) => item._id !== foodId);
+  const items = data.data.slice(0, 6).filter((item) => item._id !== foodId);
 
   return (
     <>

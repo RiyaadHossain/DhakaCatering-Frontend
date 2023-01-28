@@ -8,7 +8,7 @@ export default function SuggestedPackage({ foodId }) {
 
   if (isFetching) return <Loading />;
 
-  const packages = data.data.filter((item) => item._id !== foodId);
+  const packages = data.data.slice(0, 6).filter((item) => item._id !== foodId);
 
   return (
     <>

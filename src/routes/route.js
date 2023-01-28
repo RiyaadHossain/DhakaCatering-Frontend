@@ -57,7 +57,7 @@ const routes = createBrowserRouter([
                 element: <PrivateRoute><WishList /></PrivateRoute>,
             },
             {
-                path: "/order/:id",
+                path: "/custom-order",
                 element: <PrivateRoute><Order /></PrivateRoute>,
             },
             {
