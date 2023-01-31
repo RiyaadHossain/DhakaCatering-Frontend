@@ -7,7 +7,7 @@ import {
   useDeleteWishlistMutation,
   useGetWishlistsQuery,
   usePostWishlistMutation,
-} from "../features/wishlist/wishlist";
+} from "../features/wishlist/wishlistAPI";
 import { getToken } from "../utils/token";
 import { useUpdateViewSellMutation } from "../features/package/packageAPI";
 import { useUserPersistencyQuery } from "../features/auth/authAPI";
@@ -47,7 +47,7 @@ export default function PackageCard({ item }) {
   };
 
   if (userExist) {
-    wishListed = data.wishLists.find((item) => item.foodId === _id);
+    wishListed = data?.wishLists?.find((item) => item.foodId === _id);
   }
 
   const handleDetails = () => {
@@ -58,7 +58,7 @@ export default function PackageCard({ item }) {
   return (
     <div className="card w-96 h-[600px] bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">
       <figure>
-        <img src={image.url} alt={image.title} />
+        <img src={image.url} alt={image.title} className="w-full h-60 object-cover"/>
       </figure>
       <div className="card-body">
         <div className="flex items-center justify-between">

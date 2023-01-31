@@ -1,20 +1,19 @@
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useGetWishlistsQuery } from "../features/wishlist/wishlist";
 import { getToken } from "../utils/token";
 import IconSpinner from "./IconSpinner";
+import { useGetWishlistsQuery } from "../features/wishlist/wishlistAPI";
+import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function WishListIn() {
-
   const token = getToken();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
-  const userExist = Object.keys(user).length;
+  let { data: user, isFetching: userFetching } = useUserPersistencyQuery(token);
   const { data, isFetching } = useGetWishlistsQuery(token);
-
-  if (isFetching) return <IconSpinner />;
+  if (isFetching || userFetching) return <IconSpinner />;
+  user = user.data
+  const userExist = Object.keys(user).length;
   const totalWishlists = data?.wishLists?.length;
 
   const navigateWishlist = () => {

@@ -3,7 +3,7 @@ import React from "react";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-2.jpg";
 import WishlistCard from "./WishlistCard";
-import { useGetWishlistsQuery } from "../../features/wishlist/wishlist";
+import { useGetWishlistsQuery } from "../../features/wishlist/wishlistAPI";
 import { getToken } from "../../utils/token";
 import Loading from "../../components/Loading";
 

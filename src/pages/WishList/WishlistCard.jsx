@@ -2,20 +2,24 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import bg_img from "../../assets/images/hero-image-2.jpg";
 import Loading from "../../components/Loading";
-import {  useGetPackagesQuery } from "../../features/package/packageAPI";
+import { useGetPackagesQuery } from "../../features/package/packageAPI";
 
 export default function WishlistCard({ item }) {
   const navigate = useNavigate();
-  const { data, isFetching } = useGetPackagesQuery()
-  if (isFetching) return <Loading />
-  
-  item = data.data.find(packageItem => packageItem._id === item.foodId)
-  console.log(item)
+  const { data, isFetching } = useGetPackagesQuery();
+  if (isFetching) return <Loading />;
+
+  item = data.data.find((packageItem) => packageItem._id === item.foodId);
+  console.log(item);
 
   return (
     <div className="card w-96 h-[600px] bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">
       <figure>
-        <img src={bg_img} alt="" />
+        <img
+          src={item.image.url || bg_img}
+          alt=""
+          className="w-full h-64 object-cover"
+        />
       </figure>
       <div className="card-body">
         <div className="flex items-center justify-between">
@@ -25,7 +29,8 @@ export default function WishlistCard({ item }) {
         <p className="text-md">{item.description}</p>
         <div className="flex items-center mt-2 justify-between">
           <p className="">
-            <span className="text-base font-semibold">Total Item: </span> {item.allItems.items.length}
+            <span className="text-base font-semibold">Total Item: </span>{" "}
+            {item.allItems.items.length}
           </p>
           <p className="text-2xl font-semibold">{item.price}৳</p>
         </div>
@@ -37,7 +42,7 @@ export default function WishlistCard({ item }) {
             See Details
           </button>
           <button
-            onClick={() => navigate(`/order/6344`)}
+            onClick={() => navigate(`/package/${item._id}`)}
             className="btn btn-warning flex-1"
           >
             Make Order
