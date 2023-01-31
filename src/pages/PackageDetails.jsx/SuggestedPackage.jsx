@@ -12,7 +12,7 @@ export default function SuggestedPackage({ foodId }) {
 
   return (
     <>
-      {packages.length && (
+      {packages.length ? (
         <div className="mt-14">
           <h3 className="font-semibold text-2xl sm:border-l-[5px] border-l-0 text-center sm:text-left border-l-sky-600 pl-2">
             You Might Also Like
@@ -23,7 +23,7 @@ export default function SuggestedPackage({ foodId }) {
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }

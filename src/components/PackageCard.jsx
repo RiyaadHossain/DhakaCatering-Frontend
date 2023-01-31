@@ -9,7 +9,8 @@ import {
   usePostWishlistMutation,
 } from "../features/wishlist/wishlist";
 import { getToken } from "../utils/token";
-import { useSelector } from "react-redux";
+import { useUpdateViewSellMutation } from "../features/package/packageAPI";
+import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function PackageCard({ item }) {
   let wishListed;
@@ -17,12 +18,14 @@ export default function PackageCard({ item }) {
   const navigate = useNavigate();
   const { _id, name, price, image, category, description } = item;
   const { data } = useGetWishlistsQuery(token);
+  const { data: user } = useUserPersistencyQuery(token);
+  const [handleVewCount] = useUpdateViewSellMutation();
   const [postWishlist, { isError, isSuccess, error }] =
     usePostWishlistMutation();
   const [deleteWishlist, { isSuccess: deleteSuccess }] =
     useDeleteWishlistMutation();
-  const { user } = useSelector((state) => state.auth);
-  const userExist = Object.keys(user).length;
+
+  const userExist = Object.keys(user.data).length;
 
   useEffect(() => {
     if (isSuccess) toast.success("Added to Wishlist", { id: "succ" });
@@ -33,8 +36,8 @@ export default function PackageCard({ item }) {
 
   const addWishlist = () => {
     if (!userExist) {
-      navigate("/signin")
-      return
+      navigate("/signin");
+      return;
     }
     postWishlist({ token, foodId: _id });
   };
@@ -46,6 +49,11 @@ export default function PackageCard({ item }) {
   if (userExist) {
     wishListed = data.wishLists.find((item) => item.foodId === _id);
   }
+
+  const handleDetails = () => {
+    handleVewCount({ token, packageData: { userId: user.data._id, id: item._id, viewCount: 1 } });
+    navigate(`/package/${item._id}`);
+  };
 
   return (
     <div className="card w-96 h-[600px] bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">
@@ -79,7 +87,7 @@ export default function PackageCard({ item }) {
           )}
         </div>
         <button
-          onClick={() => navigate(`/package/${item._id}`)}
+          onClick={() => handleDetails()}
           className="btn btn-outline btn-info mt-3"
         >
           See Details

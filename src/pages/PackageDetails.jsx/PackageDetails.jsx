@@ -14,31 +14,23 @@ import SuggestedFood from "./SuggestedPackage";
 
 export default function PackageDetails() {
   const token = getToken();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
   const { isFetching, data } = useGetPackageDetailsQuery(id);
   const [createOrder, { isLoading, isSuccess }] = useCreateOrderMutation();
 
   useEffect(() => {
-    if (isLoading)
-      toast.loading("Proccessing...", { id: "load", duration: 800 });
+    if (isLoading) toast.loading("Proccessing...", { id: "load", duration: 800 });
     if (isSuccess) toast.success("Order Create", { id: "succ" });
   }, [isLoading, isSuccess]);
 
   if (isFetching) return <Loading />;
 
-  const {
-    _id,
-    name,
-    price,
-    /* viewCount, sellCount, */ category,
-    description,
-    image,
-    allItems,
-  } = data?.data;
+  const { _id, name, price, category, description, image, allItems } =
+    data?.data;
 
   const handleOrder = () => {
-    createOrder({ token, orderData: { foodId: _id } });
+    createOrder({ token, orderData: { foodId: _id, price } });
   };
 
   return (
@@ -83,7 +75,11 @@ export default function PackageDetails() {
             Order Now
           </label>
           <p className="mt-2 text-sm font-semibold ">
-            Didn't Like the package? <span onClick={() => navigate('/custom-order')} className="link"> Make a custom Order</span>
+            Didn't Like the package?{" "}
+            <span onClick={() => navigate("/custom-order")} className="link">
+              {" "}
+              Make a custom Order
+            </span>
           </p>
         </div>
       </div>
