@@ -3,7 +3,6 @@ import React from "react";
 export default function SelectedItem({
   selItems,
   setSelItems,
-  totalPrice,
   setTotalPrice,
 }) {
   const calculateTotalPrice = () => {

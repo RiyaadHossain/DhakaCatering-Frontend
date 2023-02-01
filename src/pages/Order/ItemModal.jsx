@@ -46,10 +46,9 @@ export default function ItemModal({
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box max-w-3xl">
-          {/* <h3 className="font-bold text-lg"></h3> */}
           <div className=" flex items-center justify-between">
             <p>
-              <span className="font-semibold text-lg0">Total Price:</span> $
+              <span className="font-semibold text-lg">Total Price:</span> $
               {totalPrice}
             </p>
             <p className="btn btn-sm">{selItems.length}</p>
@@ -62,11 +61,10 @@ export default function ItemModal({
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
             />
-            {/* ------------------ Table ------------------ */}
             <p className="font-semibold mb-2 mt-10">Select More Items -</p>
-            <div className="overflow-x-auto w-full">
-              <table className="table w-full border rounded-t-lg">
-                {/* <!-- head --> */}
+            {/* ------------------ Table ------------------ */}
+            <div className="overflow-x-auto w-full rounded-t-lg">
+              <table className="table w-full border">
                 <thead>
                   <tr>
                     <th></th>
@@ -75,7 +73,6 @@ export default function ItemModal({
                   </tr>
                 </thead>
                 <tbody>
-                  {/*  row  */}
                   {unselectedItems.map((item) => (
                     <tr key={item._id}>
                       <th>

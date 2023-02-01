@@ -7,13 +7,16 @@ import { useGetWishlistsQuery } from "../features/wishlist/wishlistAPI";
 import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function WishListIn() {
+  let userExist = false;
   const token = getToken();
   const navigate = useNavigate();
   let { data: user, isFetching: userFetching } = useUserPersistencyQuery(token);
   const { data, isFetching } = useGetWishlistsQuery(token);
   if (isFetching || userFetching) return <IconSpinner />;
-  user = user.data
-  const userExist = Object.keys(user).length;
+  if (user) {
+    user = user?.data;
+    userExist = Object.keys(user).length;
+  }
   const totalWishlists = data?.wishLists?.length;
 
   const navigateWishlist = () => {
