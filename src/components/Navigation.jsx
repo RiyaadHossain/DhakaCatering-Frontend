@@ -4,9 +4,9 @@ import Description from "../pages/FoodItem/Description";
 import Reviews from "../pages/FoodItem/Reviews";
 import Loading from "./Loading";
 
-export default function Navigation({ foodId }) {
+export default function Navigation({ foodId, description }) {
   const [navig, setNavig] = useState("des");
-  const { data, isFetching } = useGetReviewsQuery({foodId});
+  const { data, isFetching } = useGetReviewsQuery({ foodId });
   if (isFetching) return <Loading />;
 
   return (
@@ -30,7 +30,11 @@ export default function Navigation({ foodId }) {
         </button>
       </div>
       <div className="mt-8">
-        {navig === "des" ? <Description /> : <Reviews reviews={data?.reviews} foodId={foodId} />}
+        {navig === "des" ? (
+          <Description description={description} />
+        ) : (
+          <Reviews reviews={data?.reviews} foodId={foodId} />
+        )}
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ export default function WishlistCard({ item }) {
   if (isFetching) return <Loading />;
 
   item = data.data.find((packageItem) => packageItem._id === item.foodId);
-  console.log(item);
 
   return (
     <div className="card w-96 h-[600px] bg-base-100 rounded-lg shadow-xl hover:-translate-y-3 transition-all">
@@ -30,7 +29,7 @@ export default function WishlistCard({ item }) {
         <div className="flex items-center mt-2 justify-between">
           <p className="">
             <span className="text-base font-semibold">Total Item: </span>{" "}
-            {item.allItems.items.length}
+            {item.allItems.length}
           </p>
           <p className="text-2xl font-semibold">{item.price}৳</p>
         </div>

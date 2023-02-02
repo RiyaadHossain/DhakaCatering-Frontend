@@ -16,7 +16,7 @@ export default function Packages() {
     <div className="py-20">
       <h2 className="section-title">Standard Packages</h2>
       <div className="flex justify-center flex-wrap gap-8 px-4">
-        {packages.map((item) => (
+        {packages.slice(0, 3).map((item) => (
           <PackageCard key={item._id} item={item} />
         ))}
       </div>

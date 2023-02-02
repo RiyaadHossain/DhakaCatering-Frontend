@@ -53,12 +53,18 @@ export default function WishListIn() {
           </span>
           {/* <span className="text-sky-600 font-semibold">Subtotal: $999</span> */}
           <div className="card-actions">
-            <button
-              onClick={navigateWishlist}
-              className="btn btn-primary btn-sm btn-block"
-            >
-              View Items
-            </button>
+            {totalWishlists ? (
+              <button
+                onClick={navigateWishlist}
+                className="btn btn-primary btn-sm btn-block"
+              >
+                View Items
+              </button>
+            ) : (
+              <p className="btn btn-disabled text-slate-700 btn-primary btn-sm btn-block">
+                No Item Wishlisted
+              </p>
+            )}
           </div>
         </div>
       </div>

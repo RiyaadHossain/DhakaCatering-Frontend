@@ -14,11 +14,13 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "../utils/PrivateRoute";
 import AllItems from "../pages/AllItems/AllItems";
+import Error from "../pages/Error/Error";
 
 const routes = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <Error/>,
         children: [
             {
                 path: "/",

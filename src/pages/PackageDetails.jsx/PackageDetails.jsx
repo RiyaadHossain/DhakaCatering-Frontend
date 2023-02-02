@@ -56,18 +56,18 @@ export default function PackageDetails() {
             </p>
           </div> */}
           <div className="mt-4 max-w-[260px]">
-            {allItems.items.map((item) => (
+            {allItems.map((item) => (
               <div className="flex justify-between items-center mt-1">
-                <h2>{item.name}</h2>
-                <span>{item.price}</span>
+                <h2>{item.id.name}</h2>
+                <span>{item.qty}</span>
               </div>
             ))}
-            <div className="mt-5 flex items-center justify-between">
+
+            <div className="mt-3 flex items-center justify-between">
               <p className="font-semibold text-lg">Total</p>
               <p className="font-semibold">{price}</p>
             </div>
           </div>
-          <p className="pt-4 font-light max-w-lg">{description}</p>
           <label
             htmlFor="my-modal-order"
             className="btn mt-5 rounded-md btn-wide"
@@ -86,7 +86,7 @@ export default function PackageDetails() {
       {/* ===================== First Section End ===================== */}
 
       <div className="mt-16 px-6">
-        <Navigation foodId={id} />
+        <Navigation description={description} foodId={id} />
         <SuggestedFood foodId={_id} />
       </div>
 
