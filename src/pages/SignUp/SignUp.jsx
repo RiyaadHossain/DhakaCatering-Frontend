@@ -60,7 +60,6 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-
     if (isLoading)
       toast.loading("Signing Up...", { id: "loading", duration: 800 });
 
@@ -69,7 +68,11 @@ export default function SignUp() {
         errorMessage.current = "User with same credentials is exist";
     }
 
-    if (isSuccess) toast.success("Signing Up...", { id: "succ" });
+    if (isSuccess)
+      toast.success("Please check your mail to activate the account", {
+        id: "succ",
+        style: { width: "420px" },
+      });
 
     if (isError) toast.error(errorMessage.current, { id: "err" });
   }, [isLoading, isSuccess, isError, errorMessage, error]);

@@ -7,9 +7,9 @@ import Foods from "./Foods";
 import Packages from "./Packages";
 import Testimonials from "./Testimonials";
 // import TrendingItem from "./TrendingItem";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 export default function Home() {
-
   return (
     <div>
       <Banner />
@@ -20,6 +20,7 @@ export default function Home() {
       {/* <MostSold/> */}
       <FAQ />
       <Testimonials />
+      <MessengerCustomerChat pageId="428900680898387" appId="396540481942899" />
     </div>
   );
 }

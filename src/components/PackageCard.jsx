@@ -14,6 +14,7 @@ import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function PackageCard({ item }) {
   let wishListed;
+  let userExist = false
   const token = getToken();
   const navigate = useNavigate();
   const { _id, name, price, image, category, allItems } = item;
@@ -25,7 +26,9 @@ export default function PackageCard({ item }) {
   const [deleteWishlist, { isSuccess: deleteSuccess }] =
     useDeleteWishlistMutation();
 
-  const userExist = Object.keys(user.data).length;
+  if (user?.data) {
+    userExist = Object.keys(user?.data).length;
+  }
 
   useEffect(() => {
     if (isSuccess) toast.success("Added to Wishlist", { id: "succ" });
