@@ -20,7 +20,7 @@ export default function Home() {
       {/* <MostSold/> */}
       <FAQ />
       <Testimonials />
-      <MessengerCustomerChat pageId="428900680898387" appId="396540481942899" />
+      <MessengerCustomerChat pageId="428900680898387" appId="696927455446849" />
     </div>
   );
 }
