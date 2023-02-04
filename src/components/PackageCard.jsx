@@ -77,8 +77,8 @@ export default function PackageCard({ item }) {
         </div>
         {/* <p className="text-md">{description}</p> */}
         <div>
-          {allItems.map((item) => (
-            <div className="flex items-center justify-between max-w-xs mb-1">
+          {allItems.map((item, i) => (
+            <div key={i} className="flex items-center justify-between max-w-xs mb-1">
               <div>{item.id.name}</div>
               <div>{item.qty} </div>
             </div>
