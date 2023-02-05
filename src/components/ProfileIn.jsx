@@ -14,10 +14,10 @@ export default function ProfileIn() {
   if (isFetching) return <IconSpinner />;
 
   if (data?.status === "success") {
-    user.email = data.data.email;
-    user.fullName = data.data.fullName;
-    user.imageUrl = data.data.imageUrl;
-    user.occupation = data.data.occupation;
+    user.email = data?.data?.email;
+    user.fullName = data?.data?.fullName;
+    user.imageUrl = data?.data?.imageUrl;
+    user.occupation = data?.data?.occupation;
   }
 
   const signOut = () => {
