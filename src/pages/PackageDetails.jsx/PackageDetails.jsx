@@ -11,6 +11,7 @@ import { getToken } from "../../utils/token";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import SuggestedFood from "./SuggestedPackage";
+import ModalContent from "./ModalContent";
 
 export default function PackageDetails() {
   const token = getToken();
@@ -20,7 +21,8 @@ export default function PackageDetails() {
   const [createOrder, { isLoading, isSuccess }] = useCreateOrderMutation();
 
   useEffect(() => {
-    if (isLoading) toast.loading("Proccessing...", { id: "load", duration: 800 });
+    if (isLoading)
+      toast.loading("Proccessing...", { id: "load", duration: 800 });
     if (isSuccess) toast.success("Order Create", { id: "succ" });
   }, [isLoading, isSuccess]);
 
@@ -94,34 +96,7 @@ export default function PackageDetails() {
       <input type="checkbox" id="my-modal-order" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box border-2 border-gray-400">
-          <h3 className="font-bold text-xl text-center">
-            To Confirm the Order
-          </h3>
-          <p className="py-4">
-            Please contact with the following numbers:
-            <br />
-            <div className="flex items-center gap-2 mt-2">
-              <span className="font-bold">GP:</span> 01703790978
-            </div>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="font-bold">BL:</span> 01703790978
-            </div>
-          </p>
-          <div className="modal-action">
-            <label
-              htmlFor="my-modal-order"
-              className="btn rounded-md btn-error btn-sm"
-            >
-              Cancel
-            </label>
-            <label
-              htmlFor="my-modal-order"
-              onClick={handleOrder}
-              className="btn rounded-md btn-success btn-sm"
-            >
-              Order
-            </label>
-          </div>
+          <ModalContent handleOrder={handleOrder} token={token} id={_id} />
         </div>
       </div>
     </div>

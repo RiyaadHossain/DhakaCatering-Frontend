@@ -2,12 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-2.jpg";
-import SelectItems from "./ItemModal";
 import { useState } from "react";
 import { useCreateOrderRequestMutation } from "../../features/orderRequest/orderRequestAPI";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { getToken } from "../../utils/token";
+import ItemModal from "./ItemModal";
+import SelectedItem from "./SelectedItem";
 
 export default function Order() {
   const token = getToken();
@@ -85,7 +86,7 @@ export default function Order() {
                   <select
                     defaultValue="Empty"
                     {...register("category", { required: true })}
-                    className="select select-bordered rounded-md w-full max-w-xs"
+                    className="select select-bordered rounded-md w-full"
                   >
                     <option disabled value="Empty">
                       Select a Category
@@ -120,17 +121,23 @@ export default function Order() {
                   </span>
                 )}
               </div>
-              <div className="mt-4 flex">
-                <p>
-                  <span className="font-semibold">Items Selected:</span>{" "}
-                  {selItems.length}
-                </p>
+              <div className="mt-4 flex justify-between mb-2">
                 <p>
                   <span className="font-semibold"> Price:</span> {totalPrice}
                 </p>
+                <p className="text-right">
+                  <span className="font-semibold">Items Selected:</span>{" "}
+                  {selItems.length}
+                </p>
               </div>
+              <SelectedItem
+                selItems={selItems}
+                setSelItems={setSelItems}
+                totalPrice={totalPrice}
+                setTotalPrice={setTotalPrice}
+              />
               <div className="form-control mt-6">
-                <button className="btn btn-info btn-wide mx-auto rounded-lg">
+                <button type="submit" className="btn btn-info btn-wide mx-auto rounded-lg">
                   Order Request
                 </button>
               </div>
@@ -138,7 +145,7 @@ export default function Order() {
           </div>
         </div>
       </div>
-      <SelectItems
+      <ItemModal
         selItems={selItems}
         setSelItems={setSelItems}
         totalPrice={totalPrice}

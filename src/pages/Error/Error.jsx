@@ -4,6 +4,10 @@ import Bug_Fix from "../../assets/icon/Fixing-Bugs.svg"
 
 export default function Error() {
   const navigate = useNavigate();
+  const fixError = () => {
+    window.location.reload()
+    navigate("/")
+  }
 
   return (
     <div className="bg-slate-200">
@@ -14,7 +18,7 @@ export default function Error() {
           Some Unexpected Error Occurred, Please contact Support
         </p>
         <button
-          onClick={() => navigate("/")}
+          onClick={fixError}
           className="btn btn-wide btn-secondary rounded-md mt-2"
         >
           Go To Home

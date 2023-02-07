@@ -7,22 +7,28 @@ import Loading from "../../components/Loading";
 
 export default function Menu() {
   const { data, isFetching } = useGetPackagesQuery();
-  if(isFetching) return <Loading/>
+  if (isFetching) return <Loading />;
 
   return (
     <div className="pb-10">
       <PageBanner bg_img={bg_img} title="Menu" />
       <div className="pt-16">
         <div className="mb-20 flex flex-wrap gap-8 md:gap-20 px-6 justify-center">
-          <select className="select rounded-md bg-slate-700 text-white select-bordered w-full max-w-[250px] md:max-w-[300px]">
-            <option selected>Filter by Category</option>
+          <select
+            defaultValue="default"
+            className="select rounded-md bg-slate-700 text-white select-bordered w-full max-w-[250px] md:max-w-[300px]"
+          >
+            <option value="default">Filter by Category</option>
             <option>BreakFast</option>
             <option>Lunch</option>
             <option>Dinner</option>
           </select>
           <div className="flex gap-3 flex-wrap ">
-            <select className="select rounded-md bg-slate-700 text-white select-bordered mx-auto w-full max-w-[120px]">
-              <option selected>Sort by</option>
+            <select
+              defaultValue="default"
+              className="select rounded-md bg-slate-700 text-white select-bordered mx-auto w-full max-w-[120px]"
+            >
+              <option value="default">Sort by</option>
               <option>BreakFast</option>
               <option>Lunch</option>
               <option>Dinner</option>
@@ -55,8 +61,8 @@ export default function Menu() {
           </div>
         </div>
         <div className="flex justify-center flex-wrap gap-8 px-4 md:px-8 lg:px-24">
-          {data.data.map((item) => (
-            <PackageCard item={item} />
+          {data.data.map((item, i) => (
+            <PackageCard key={i} item={item} />
           ))}
         </div>
         <div className="text-center mt-14">

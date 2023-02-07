@@ -14,7 +14,7 @@ import { useUserPersistencyQuery } from "../features/auth/authAPI";
 
 export default function PackageCard({ item }) {
   let wishListed;
-  let userExist = false
+  let userExist = false;
   const token = getToken();
   const navigate = useNavigate();
   const { _id, name, price, image, category, allItems } = item;
@@ -55,8 +55,7 @@ export default function PackageCard({ item }) {
 
   const handleDetails = () => {
     handleVewCount({
-      token,
-      packageData: { userId: user.data._id, id: item._id, viewCount: 1 },
+      packageData: { id: item._id, viewCount: 1 },
     });
     navigate(`/package/${item._id}`);
   };
@@ -78,7 +77,10 @@ export default function PackageCard({ item }) {
         {/* <p className="text-md">{description}</p> */}
         <div>
           {allItems.map((item, i) => (
-            <div key={i} className="flex items-center justify-between max-w-xs mb-1">
+            <div
+              key={i}
+              className="flex items-center justify-between max-w-xs mb-1"
+            >
               <div>{item.id.name}</div>
               <div>{item.qty} </div>
             </div>

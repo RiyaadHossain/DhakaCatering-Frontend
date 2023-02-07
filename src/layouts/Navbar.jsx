@@ -64,6 +64,9 @@ export default function Navbar() {
               <Link to="/menu">Package</Link>
             </li>
             <li className="font-semibold flex hover-bordered justify-center content-center">
+              <Link to="/gallery">Gallery</Link>
+            </li>
+            <li className="font-semibold flex hover-bordered justify-center content-center">
               <Link to="/contact">Contact</Link>
             </li>
             <li className="font-semibold flex justify-center hover-bordered content-center">

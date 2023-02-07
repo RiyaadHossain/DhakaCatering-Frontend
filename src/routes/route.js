@@ -15,6 +15,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "../utils/PrivateRoute";
 import AllItems from "../pages/AllItems/AllItems";
 import Error from "../pages/Error/Error";
+import Gallery from "../pages/Gallery/Gallery";
 
 const routes = createBrowserRouter([
     {
@@ -36,11 +37,11 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/food-item/:id",
-                element: <PrivateRoute><FoodItem /></PrivateRoute>,
+                element: <FoodItem />,
             },
             {
                 path: "/package/:id",
-                element: <PrivateRoute><PackageDetails /></PrivateRoute>,
+                element: <PackageDetails />,
             },
             {
                 path: "/contact",
@@ -60,7 +61,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/custom-order",
-                element: <PrivateRoute><Order /></PrivateRoute>,
+                element: <Order />,
             },
             {
                 path: "/signup",
@@ -69,6 +70,10 @@ const routes = createBrowserRouter([
             {
                 path: "/signin",
                 element: <SignIn />,
+            },
+            {
+                path: "/gallery",
+                element: <Gallery />,
             },
             {
                 path: "*",
