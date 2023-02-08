@@ -9,9 +9,13 @@ import { toast } from "react-hot-toast";
 import { getToken } from "../../utils/token";
 import ItemModal from "./ItemModal";
 import SelectedItem from "./SelectedItem";
+import SignUPModal from "./SignUPModal";
 
 export default function Order() {
+  let orderRequestDataGlobal;
   const token = getToken();
+  const [orderRequestInfo, setOrderRequestInfo] = useState(null);
+  const [openModal, setOpenModal] = useState(null);
   let [selItems, setSelItems] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   const [createOrderRequest, { isSuccess }] = useCreateOrderRequestMutation();
@@ -31,15 +35,19 @@ export default function Order() {
   const handleOrder = (orderRequestData) => {
     if (!selItems.length || !totalPrice)
       return toast.error("You Can't make any empty request", { id: "err" });
-
     const allItems = selItems.map((item) => {
       return { id: item._id, qty: item.qty, totalPrice: item.totalPrice };
     });
-    orderRequestData = { ...orderRequestData, allItems, totalPrice };
-    createOrderRequest({ orderRequestData, token });
-    reset();
-    selItems([]);
-    setTotalPrice(0);
+    orderRequestDataGlobal = { ...orderRequestData, allItems, totalPrice };
+    setOrderRequestInfo(orderRequestDataGlobal)
+    if (!token) {
+      setOpenModal(true);
+    } else {
+      createOrderRequest({ orderRequestDataGlobal, token });
+      reset();
+      setSelItems([]);
+      setTotalPrice(0);
+    }
   };
 
   return (
@@ -137,7 +145,10 @@ export default function Order() {
                 setTotalPrice={setTotalPrice}
               />
               <div className="form-control mt-6">
-                <button type="submit" className="btn btn-info btn-wide mx-auto rounded-lg">
+                <button
+                  type="submit"
+                  className="btn btn-info btn-wide mx-auto rounded-lg"
+                >
                   Order Request
                 </button>
               </div>
@@ -145,10 +156,18 @@ export default function Order() {
           </div>
         </div>
       </div>
+      {openModal && (
+        <SignUPModal
+          token={token}
+          setOpenModal={setOpenModal}
+          createOrderRequest={createOrderRequest}
+          orderRequestDataGlobal={orderRequestInfo}
+        />
+      )}
       <ItemModal
         selItems={selItems}
-        setSelItems={setSelItems}
         totalPrice={totalPrice}
+        setSelItems={setSelItems}
         setTotalPrice={setTotalPrice}
       />
     </div>

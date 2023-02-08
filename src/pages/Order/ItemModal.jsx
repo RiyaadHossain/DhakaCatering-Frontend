@@ -53,8 +53,23 @@ export default function ItemModal({
             </p>
             <p className="btn btn-sm">{selItems.length}</p>
           </div>
+          <div className="modal-action mt-10">
+            <label
+              onClick={resetItems}
+              htmlFor="my-modal"
+              className="btn rounded-md btn-sm btn-error"
+            >
+              Cancel
+            </label>
+            <label
+              htmlFor="my-modal"
+              className="btn rounded-md btn-sm btn-success"
+            >
+              Confirm!
+            </label>
+          </div>
           <div className="py-4">
-            <p className="font-semibold mb-2 mt-10">Selected Items -</p>
+            <p className="font-semibold mb-2 mt-6">Selected Items -</p>
             <SelectedItem
               selItems={selItems}
               setSelItems={setSelItems}
@@ -109,21 +124,6 @@ export default function ItemModal({
               </table>
             </div>
             {/* ------------------ Table ^ ------------------ */}
-            <div className="modal-action">
-              <label
-                onClick={resetItems}
-                htmlFor="my-modal"
-                className="btn rounded-md btn-sm btn-error"
-              >
-                Cancel
-              </label>
-              <label
-                htmlFor="my-modal"
-                className="btn rounded-md btn-sm btn-success"
-              >
-                Confirm!
-              </label>
-            </div>
           </div>
         </div>
       </div>

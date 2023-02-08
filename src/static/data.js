@@ -1,0 +1,1 @@
+export const unknownUser = 'https://images.unsplash.com/photo-1519400197429-404ae1a1e184?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'

@@ -5,8 +5,8 @@ import Bug_Fix from "../../assets/icon/Fixing-Bugs.svg"
 export default function Error() {
   const navigate = useNavigate();
   const fixError = () => {
-    window.location.reload()
     navigate("/")
+    window.location.reload()
   }
 
   return (

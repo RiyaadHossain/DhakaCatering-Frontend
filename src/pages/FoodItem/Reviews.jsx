@@ -7,6 +7,7 @@ import Loading from "../../components/Loading";
 import ReviewCard from "../../components/ReviewCard";
 import { useUserPersistencyQuery } from "../../features/auth/authAPI";
 import { usePostReviewMutation } from "../../features/review/reviewAPI";
+import { useNavigate } from "react-router-dom";
 
 export default function Reviews({ reviews, foodId }) {
   const {
@@ -17,6 +18,7 @@ export default function Reviews({ reviews, foodId }) {
   } = useForm();
 
   let userReview;
+  const navigate = useNavigate();
   const token = getToken();
   let userReviewExist = false;
   const { data: user } = useUserPersistencyQuery(token);
@@ -35,6 +37,7 @@ export default function Reviews({ reviews, foodId }) {
   if (isLoading) return <Loading />;
 
   const handleReview = (reviewData) => {
+    if (!token) return navigate("/signin");
     reviewData = {
       foodId,
       ...reviewData,
@@ -48,7 +51,7 @@ export default function Reviews({ reviews, foodId }) {
 
   if (Array.isArray(reviews)) {
     reviews = reviews?.filter((review) => review.foodId === foodId);
-    userReview = reviews.filter((review) => review.userId === user.data._id);
+    userReview = reviews.filter((review) => review.userId === user?.data?._id);
 
     if (userReview.length > 1) {
       userReviewExist = true;
@@ -90,8 +93,8 @@ export default function Reviews({ reviews, foodId }) {
       </div>
       <div className="mt-12 grid md:grid-cols-2 md:gap-6">
         {reviews?.length ? (
-          reviews.map((review) => (
-            <ReviewCard review={review} user={user.data} />
+          reviews.map((review, i) => (
+            <ReviewCard key={i} review={review} user={user?.data} />
           ))
         ) : (
           <p className="text-xl font-semibold text-slate-600">

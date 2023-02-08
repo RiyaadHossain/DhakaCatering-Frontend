@@ -3,11 +3,19 @@ import React from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserSignUpMutation } from "../../features/auth/authAPI";
+import { unknownUser } from "../../static/data";
 import { storeToken } from "../../utils/token";
 
-export default function ModalContent({ handleOrder, token, id }) {
+export default function ModalContent({
+  id,
+  handleOrder,
+  setOpenModal,
+  customOrderPage,
+  createOrderRequest,
+  orderRequestDataGlobal,
+}) {
   const navigate = useNavigate();
   const imgStorage_key = "b20e07a3b33d3ccbb413087c3d9d148d";
 
@@ -22,21 +30,22 @@ export default function ModalContent({ handleOrder, token, id }) {
     useUserSignUpMutation();
 
   const signinHandle = async (userData) => {
+    toast.loading("Processing...", { id: "loading", duration: 2000 });
     const imageData = userData?.image[0];
     const formData = new FormData();
     formData.append("image", imageData);
     const URL = `https://api.imgbb.com/1/upload?key=${imgStorage_key}`;
     const { data } = await axios.post(URL, formData);
+    userData = {
+      ...userData,
+      role: "User",
+    };
     if (data.success) {
-      userData = {
-        ...userData,
-        role: "User",
-        imageUrl: data.data.url,
-      };
-
+      userData.imageUrl = data.data.url;
       signup(userData);
     } else {
-      toast.error("Something went wrong");
+      userData.imageUrl = unknownUser;
+      signup(userData);
     }
     reset();
   };
@@ -48,15 +57,36 @@ export default function ModalContent({ handleOrder, token, id }) {
     if (isSuccess) {
       storeToken(data.data.token);
       toast.success("Signed In", { id: "succ" });
-      navigate(`/package/${id}`);
+      !customOrderPage && navigate(`/package/${id}`);
+
+      customOrderPage &&
+        createOrderRequest({
+          orderRequestDataGlobal,
+          token: data?.data?.token,
+        });
+
+      // window.location.reload();
+      // setOpenModal(false);
     }
 
     if (isError) toast.error(error.data.error, { id: "err" });
-  }, [isLoading, isSuccess, isError, error, navigate, id, data]);
+  }, [
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    navigate,
+    id,
+    data,
+    customOrderPage,
+    createOrderRequest,
+    setOpenModal,
+    orderRequestDataGlobal,
+  ]);
 
   return (
     <div>
-      {token ? (
+      {data?.data?.token && !customOrderPage ? (
         <>
           <h3 className="font-bold text-xl text-center">
             To Confirm the Order
@@ -174,8 +204,10 @@ export default function ModalContent({ handleOrder, token, id }) {
                   )}
                   <label className="label">
                     <span className="label-text-alt">
-                      For Exclusive Offers{" "}
-                      <span className=" link  link-info">Sign Up</span>
+                      Already Have an account{" "}
+                      <Link to="/signin" className=" link  link-info">
+                        Sign In
+                      </Link>
                     </span>
                   </label>
                 </div>

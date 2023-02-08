@@ -12,8 +12,10 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import SuggestedFood from "./SuggestedPackage";
 import ModalContent from "./ModalContent";
+import { useState } from "react";
 
 export default function PackageDetails() {
+  const [open, setOpen] = useState(null);
   const token = getToken();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -72,6 +74,7 @@ export default function PackageDetails() {
           </div>
           <label
             htmlFor="my-modal-order"
+            onClick={() => setOpen(true)}
             className="btn mt-5 rounded-md btn-wide"
           >
             Order Now
@@ -93,12 +96,22 @@ export default function PackageDetails() {
       </div>
 
       {/* Modal Content */}
-      <input type="checkbox" id="my-modal-order" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box border-2 border-gray-400">
-          <ModalContent handleOrder={handleOrder} token={token} id={_id} />
-        </div>
-      </div>
+      {open && (
+        <>
+          <input type="checkbox" id="my-modal-order" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box border-2 border-gray-400 relative">
+              <button
+                onClick={() => setOpen(false)}
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </button>
+              <ModalContent handleOrder={handleOrder} token={token} id={_id} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
