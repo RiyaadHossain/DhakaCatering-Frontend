@@ -61,12 +61,11 @@ export default function ModalContent({
 
       customOrderPage &&
         createOrderRequest({
-          orderRequestDataGlobal,
+          orderRequestData: orderRequestDataGlobal,
           token: data?.data?.token,
         });
 
-      // window.location.reload();
-      // setOpenModal(false);
+      window.location.reload();
     }
 
     if (isError) toast.error(error.data.error, { id: "err" });
