@@ -15,7 +15,7 @@ export default function Foods() {
   const reload = () => window.location.reload();
 
   return (
-    <div className="py-20">
+    <div className="py-16">
       {foods.length ? (
         <>
           <h2 className="section-title">Discover Our Items</h2>

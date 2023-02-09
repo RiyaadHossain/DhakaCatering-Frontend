@@ -24,11 +24,9 @@ export default function Order() {
   const [createOrderRequest, { isSuccess }] = useCreateOrderRequestMutation();
 
   const privious = new Date();
-  privious.setDate(privious.getDate() - 1)
+  privious.setDate(privious.getDate() - 1);
 
-  const disabledDays = [
-    { from: new Date(1900, 4, 18), to: privious },
-  ];
+  const disabledDays = [{ from: new Date(1900, 4, 18), to: privious }];
 
   const [date, setDate] = useState(new Date());
 
@@ -161,22 +159,24 @@ export default function Order() {
                   </span>
                 )}
               </div>
-              <div className="mt-4 flex justify-between mb-2">
-                <p>
-                  <span className="font-semibold"> Price:</span> {totalPrice}
-                </p>
-                <p className="text-right">
-                  <span className="font-semibold">Items Selected:</span>{" "}
-                  {selItems.length}
-                </p>
+              <div className="my-5">
+                <div className="mt-4 flex justify-between mb-2">
+                  <p>
+                    <span className="font-semibold text-lg"> Price:</span> {totalPrice}
+                  </p>
+                  <p className="text-right">
+                    <span className="font-semibold text-lg">Items:</span>{" "}
+                    {selItems.length}
+                  </p>
+                </div>
+                <SelectedItem
+                  nobtn={true}
+                  selItems={selItems}
+                  setSelItems={setSelItems}
+                  totalPrice={totalPrice}
+                  setTotalPrice={setTotalPrice}
+                />
               </div>
-              <SelectedItem
-                nobtn={true}
-                selItems={selItems}
-                setSelItems={setSelItems}
-                totalPrice={totalPrice}
-                setTotalPrice={setTotalPrice}
-              />
               <DayPicker
                 disabled={disabledDays}
                 mode="single"

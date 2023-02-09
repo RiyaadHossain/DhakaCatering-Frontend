@@ -64,7 +64,7 @@ export default function SelectedItem({
             <th>Name</th>
             <th>Qty</th>
             <th>Price</th>
-           {!nobtn && <th></th>}
+            {!nobtn && <th></th>}
           </tr>
         </thead>
         <tbody>
@@ -92,27 +92,47 @@ export default function SelectedItem({
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">{item.name}</div>
+                    <div className="font-bold">
+                      {item.name}
+                      {item.discountedPrice ? (
+                        <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
+                          {item.gotDiscount} tk Off
+                        </span>
+                      ) : null}
+                    </div>
                     <div className="badge badge-sm">{item.category}</div>
                   </div>
                 </div>
               </td>
               <td>{item.qty}</td>
-              <td>{item.totalPrice || item.price}</td>
-             {!nobtn && <th className="grid gap-1">
-                <button
-                  onClick={() => increase(item._id)}
-                  className="btn btn-xs w-8 btn-success"
-                >
-                  +
-                </button>
-                <button
-                  onClick={() => decrease(item._id)}
-                  className="btn btn-xs w-8 btn-error"
-                >
-                  -
-                </button>
-              </th>}
+              <td>
+                {console.log(item.gotDiscount)}
+                {item.gotDiscount ? (
+                  <>
+                    <span className="line-through text-sm text-slate-500">
+                      {item.totalPrice + item.gotDiscount * item.qty}
+                    </span>
+                    <br />
+                  </>
+                ) : null}
+                {item.totalPrice}
+              </td>
+              {!nobtn && (
+                <th className="grid gap-1">
+                  <button
+                    onClick={() => increase(item._id)}
+                    className="btn btn-xs w-8 btn-success"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => decrease(item._id)}
+                    className="btn btn-xs w-8 btn-error"
+                  >
+                    -
+                  </button>
+                </th>
+              )}
             </tr>
           ))}
         </tbody>

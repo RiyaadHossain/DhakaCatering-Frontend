@@ -17,9 +17,11 @@ export default function ItemModal({
   const handleCheck = (e) => {
     let { checked, value } = e.target;
     value = JSON.parse(value);
+    value.gotDiscount = value.discountedPrice && value.price - value.discountedPrice
+    value.price = value.discountedPrice ? value.discountedPrice : value.price
     value = { ...value, totalPrice: value.price };
     if (checked) {
-      selItems = [...selItems, value];
+      selItems = [...selItems, {...value}];
       setSelItems(selItems);
     } else {
       selItems = selItems.filter((item) => item._id !== value._id);
@@ -110,14 +112,34 @@ export default function ItemModal({
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold">{item.name}</div>
+                            <div className="font-bold">
+                              {item.name}
+                              {item.discountedPrice ? (
+                                <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
+                                  {item.price - item.discountedPrice} tk Off
+                                </span>
+                              ) : null}
+                            </div>
                             <div className="badge badge-sm">
                               {item.category}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td>{item.price}</td>
+                      <td>
+                        <span
+                          className={`${
+                            item.discountedPrice && "text-xs line-through"
+                          } `}
+                        >
+                          {item.price}
+                        </span>
+                        {item.discountedPrice && (
+                          <>
+                            <br /> {item.discountedPrice}
+                          </>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
