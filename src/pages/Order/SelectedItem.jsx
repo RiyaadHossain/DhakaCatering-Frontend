@@ -106,7 +106,6 @@ export default function SelectedItem({
               </td>
               <td>{item.qty}</td>
               <td>
-                {console.log(item.gotDiscount)}
                 {item.gotDiscount ? (
                   <>
                     <span className="line-through text-sm text-slate-500">

@@ -8,6 +8,7 @@ import Packages from "./Packages";
 import Testimonials from "./Testimonials";
 // import TrendingItem from "./TrendingItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
+import SliderSection from "./SliderSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Banner />
       <Feature />
       <Packages />
+      <SliderSection />
       <Foods />
       {/* <TrendingItem /> */}
       {/* <MostSold/> */}

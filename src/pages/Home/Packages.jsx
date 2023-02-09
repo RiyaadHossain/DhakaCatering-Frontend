@@ -15,7 +15,7 @@ export default function Packages() {
   const reload = () => window.location.reload();
 
   return (
-    <div className="py-20">
+    <div className="py-16">
       {packages.length ? (
         <>
           <h2 className="section-title">Standard Packages</h2>
@@ -33,7 +33,7 @@ export default function Packages() {
       ) : (
         <div className="text-center text-2xl font-semibold">
           Due to Internal Server Error Packages can't be visible now
-          <button onClick={reload} className="btn btn-wide mxau">
+          <button onClick={reload} className="btn btn-wide mx-auto">
             Try Again
           </button>
         </div>
