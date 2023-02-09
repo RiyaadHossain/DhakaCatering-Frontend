@@ -3,12 +3,10 @@ import Banner from "./Banner";
 import FAQ from "./FAQ";
 import Feature from "./Feature";
 import Foods from "./Foods";
-// import MostSold from "./MostSold";
 import Packages from "./Packages";
 import Testimonials from "./Testimonials";
-// import TrendingItem from "./TrendingItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
-import SliderSection from "./SliderSection";
+import GallerySection from "./GallerySection";
 
 export default function Home() {
   return (
@@ -16,10 +14,8 @@ export default function Home() {
       <Banner />
       <Feature />
       <Packages />
-      <SliderSection />
+      <GallerySection />
       <Foods />
-      {/* <TrendingItem /> */}
-      {/* <MostSold/> */}
       <FAQ />
       <Testimonials />
       <MessengerCustomerChat pageId="428900680898387" appId="696927455446849" />
