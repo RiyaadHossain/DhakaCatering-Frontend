@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function SelectedItem({
+  nobtn,
   selItems,
   setSelItems,
   setTotalPrice,
@@ -63,7 +64,7 @@ export default function SelectedItem({
             <th>Name</th>
             <th>Qty</th>
             <th>Price</th>
-            <th></th>
+           {!nobtn && <th></th>}
           </tr>
         </thead>
         <tbody>
@@ -98,7 +99,7 @@ export default function SelectedItem({
               </td>
               <td>{item.qty}</td>
               <td>{item.totalPrice || item.price}</td>
-              <th className="grid gap-1">
+             {!nobtn && <th className="grid gap-1">
                 <button
                   onClick={() => increase(item._id)}
                   className="btn btn-xs w-8 btn-success"
@@ -111,7 +112,7 @@ export default function SelectedItem({
                 >
                   -
                 </button>
-              </th>
+              </th>}
             </tr>
           ))}
         </tbody>

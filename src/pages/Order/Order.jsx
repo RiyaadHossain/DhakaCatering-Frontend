@@ -1,15 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/hero-image-2.jpg";
-import { useState } from "react";
-import { useCreateOrderRequestMutation } from "../../features/orderRequest/orderRequestAPI";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { getToken } from "../../utils/token";
 import ItemModal from "./ItemModal";
 import SelectedItem from "./SelectedItem";
 import SignUPModal from "./SignUPModal";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
+import "react-day-picker/dist/style.css";
+import { useCreateOrderRequestMutation } from "../../features/orderRequest/orderRequestAPI";
 
 export default function Order() {
   let orderRequestDataGlobal;
@@ -19,6 +22,24 @@ export default function Order() {
   let [selItems, setSelItems] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   const [createOrderRequest, { isSuccess }] = useCreateOrderRequestMutation();
+
+  const privious = new Date();
+  privious.setDate(privious.getDate() - 1)
+
+  const disabledDays = [
+    { from: new Date(1900, 4, 18), to: privious },
+  ];
+
+  const [date, setDate] = useState(new Date());
+
+  let footer = <p className="text-sky-600 font-semibold">Please pick a day.</p>;
+  if (date) {
+    footer = (
+      <p className="text-sky-600 font-semibold">
+        You picked {format(date, "PP")}.
+      </p>
+    );
+  }
 
   const {
     reset,
@@ -38,15 +59,25 @@ export default function Order() {
     const allItems = selItems.map((item) => {
       return { id: item._id, qty: item.qty, totalPrice: item.totalPrice };
     });
-    orderRequestDataGlobal = { ...orderRequestData, allItems, totalPrice };
-    setOrderRequestInfo(orderRequestDataGlobal)
+
+    if (!date) {
+      return toast.error("Please pick a date");
+    }
+    orderRequestDataGlobal = {
+      ...orderRequestData,
+      allItems,
+      totalPrice,
+      date,
+    };
+    setOrderRequestInfo(orderRequestDataGlobal);
     if (!token) {
       setOpenModal(true);
     } else {
-      createOrderRequest({ orderRequestDataGlobal, token });
+      createOrderRequest({ orderRequestData: orderRequestDataGlobal, token });
       reset();
       setSelItems([]);
       setTotalPrice(0);
+      setDate();
     }
   };
 
@@ -113,6 +144,7 @@ export default function Order() {
                   )}
                 </div>
               </div>
+
               <div className="form-control flex-1">
                 <label className="label">
                   <span className="label-text">
@@ -139,10 +171,18 @@ export default function Order() {
                 </p>
               </div>
               <SelectedItem
+                nobtn={true}
                 selItems={selItems}
                 setSelItems={setSelItems}
                 totalPrice={totalPrice}
                 setTotalPrice={setTotalPrice}
+              />
+              <DayPicker
+                disabled={disabledDays}
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                footer={footer}
               />
               <div className="form-control mt-6">
                 <button
