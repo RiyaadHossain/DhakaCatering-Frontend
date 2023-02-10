@@ -7,6 +7,7 @@ import Packages from "./Packages";
 import Testimonials from "./Testimonials";
 import MessengerCustomerChat from "react-messenger-customer-chat";
 import GallerySection from "./GallerySection";
+import FBPage from "./FBPage";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Foods />
       <FAQ />
       <Testimonials />
+      <FBPage />
       <MessengerCustomerChat pageId="428900680898387" appId="696927455446849" />
     </div>
   );

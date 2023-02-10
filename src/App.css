@@ -138,10 +138,7 @@ html {
 
 /* Gallery */
 .gallery {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
+  @apply flex flex-wrap gap-5 justify-center px-5;
 }
 .photo {
   height: 280px;
@@ -157,47 +154,47 @@ html {
 }
 
 /* ------------- Border Animation ------------- */
-.border {
+.border_ {
   background-color: #fff;
   position: absolute;
   transition: 0.4s linear;
 }
-.border.top,
-.border.bottom {
+.border_.top,
+.border_.bottom {
   height: 2px;
   width: 340px;
 }
-.border.left,
-.border.right {
+.border_.left,
+.border_.right {
   width: 2px;
   height: 270px;
 }
-.border.top {
+.border_.top {
   top: 5px;
   right: 100%;
 }
-.border.bottom {
+.border_.bottom {
   bottom: 5px;
   left: 100%;
 }
-.border.left {
+.border_.left {
   left: 5px;
   top: 100%;
 }
-.border.right {
+.border_.right {
   right: 5px;
   bottom: 100%;
 }
-.photo:hover .border.top {
+.photo:hover .border_.top {
   right: 5px;
 }
-.photo:hover .border.bottom {
+.photo:hover .border_.bottom {
   left: 5px;
 }
-.photo:hover .border.left {
+.photo:hover .border_.left {
   top: 5px;
 }
-.photo:hover .border.right {
+.photo:hover .border_.right {
   bottom: 5px;
 }
 .photo_content {
@@ -221,7 +218,7 @@ html {
   content: "";
   height: 100%;
   width: 100%;
-  background-color: rgba(5, 5, 5, 0.700);
+  background-color: rgba(5, 5, 5, 0.7);
   position: absolute;
   top: 0;
   left: 0;

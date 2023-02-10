@@ -38,6 +38,7 @@ export default function ModalContent({
     const { data } = await axios.post(URL, formData);
     userData = {
       ...userData,
+      status: "active",
       role: "User",
     };
     if (data.success) {

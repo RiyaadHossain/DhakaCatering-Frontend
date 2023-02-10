@@ -1,4 +1,5 @@
 import React from "react";
+import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import heroImg from "../../assets/images/hero-image-2.jpg";
 
@@ -7,7 +8,7 @@ export default function Banner() {
 
   return (
     <div
-      className="hero min-h-[85vh] mt-5"
+      className="hero min-h-[85vh] mt-5 relative"
       style={{ backgroundImage: `url(${heroImg})` }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
@@ -29,6 +30,17 @@ export default function Banner() {
           </button>
         </div>
       </div>
+      <button className="absolute bottom-5 md:bottom-8 right-8 text-slate-300 flex gap-3 ">
+        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+          <BsFacebook className="text-sky-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+          <BsInstagram className="text-orange-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+          <BsYoutube className="text-red-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
+        </a>
+      </button>
     </div>
   );
 }

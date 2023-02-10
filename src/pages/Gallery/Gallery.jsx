@@ -3,8 +3,15 @@ import PageBanner from "../../components/PageBanner";
 import bg_img from "../../assets/images/gallery.jpg";
 import Slieder from "../../components/Slieder";
 import GalleryPhoto from "../../components/GalleryPhoto";
+import { useGetGalleryQuery } from "../../features/gallery/galleryAPI";
+import Loading from "../../components/Loading";
 
 export default function Gallery() {
+
+  const { data, isFetching } = useGetGalleryQuery();
+  if (isFetching) return <Loading />;
+  console.log(data);
+
   return (
     <div className="mb-14">
       <PageBanner bg_img={bg_img} title="Gallery" />
@@ -34,11 +41,10 @@ export default function Gallery() {
       <h3 className="text-center mt-12 text-3xl font-bold">Our Work</h3>
       <Slieder />
       <h3 className="text-center mt-12 text-3xl mb-5 font-bold">Our Story</h3>
-      <div className="flex flex-wrap gap-5 justify-center">
-        <GalleryPhoto />
-        <GalleryPhoto />
-        <GalleryPhoto />
-        <GalleryPhoto />
+      <div className="gallery">
+        {data.gallery.map((gallery, i) => (
+          <GalleryPhoto key={i} gallery={gallery} />
+        ))}
       </div>
     </div>
   );
