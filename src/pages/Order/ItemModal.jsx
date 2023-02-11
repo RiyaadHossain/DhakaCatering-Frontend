@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Loading from "../../components/Loading";
 import { useGetItemsQuery } from "../../features/item/itemAPI";
 import SelectedItem from "./SelectedItem";
@@ -9,6 +10,8 @@ export default function ItemModal({
   selItems,
   setSelItems,
 }) {
+
+  const [category, setCategory] = useState("")
   const { data, isFetching } = useGetItemsQuery();
   if (isFetching) return <Loading />;
 
@@ -42,6 +45,16 @@ export default function ItemModal({
 
   const itemsId = selItems.map((item) => item._id);
   const unselectedItems = items.filter((item) => !itemsId.includes(item._id));
+  let filteredItems = unselectedItems;
+  if (category) {
+    filteredItems = unselectedItems.filter(
+      (item) => item.category === category
+    );
+  }
+  if (category === "All" || category === "default") {
+    filteredItems = unselectedItems;
+  }
+
 
   return (
     <div>
@@ -78,7 +91,22 @@ export default function ItemModal({
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
             />
-            <p className="font-semibold mb-2 mt-10">Select More Items -</p>
+            <div className="flex items-center justify-between mt-10 mb-3">
+        <p className="font-semibold">Select More Items -</p>
+        <select
+          defaultValue="default"
+          onClick={(e) => setCategory(e.target.value)}
+          className="select w-full max-w-[250px] rounded-md bg-slate-200 input-bordered "
+        >
+          <option disabled value="default">
+            Select Category
+          </option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="All">All</option>
+        </select>
+      </div>
             {/* ------------------ Table ------------------ */}
             <div className="overflow-x-auto w-full rounded-t-lg">
               <table className="table w-full border">
@@ -90,7 +118,7 @@ export default function ItemModal({
                   </tr>
                 </thead>
                 <tbody>
-                  {unselectedItems.map((item) => (
+                  {filteredItems.length ? filteredItems.map((item) => (
                     <tr key={item._id}>
                       <th>
                         <label onClick={(e) => handleCheck(e)}>
@@ -141,7 +169,7 @@ export default function ItemModal({
                         )}
                       </td>
                     </tr>
-                  ))}
+                  )) : <span className="text-center my-4 block">No Item with {category} category</span>}
                 </tbody>
               </table>
             </div>

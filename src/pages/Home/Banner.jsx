@@ -30,17 +30,17 @@ export default function Banner() {
           </button>
         </div>
       </div>
-      <button className="absolute bottom-5 md:bottom-8 right-8 text-slate-300 flex gap-3 ">
-        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-          <BsFacebook className="text-sky-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-          <BsInstagram className="text-orange-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-          <BsYoutube className="text-red-600 w-8 h-8 bg-slate-300 rounded-md p-1" />
-        </a>
-      </button>
+      <div className="absolute bottom-5 md:bottom-8 right-auto md:right-8 text-slate-300 flex gap-3">
+        <button className="social-icon">
+          <BsFacebook className="text-2xl text-sky-600" />
+        </button>
+        <button className="social-icon">
+          <BsInstagram className="text-2xl text-orange-600" />
+        </button>
+        <button className="social-icon">
+          <BsYoutube className="text-2xl text-red-600" />
+        </button>
+      </div>
     </div>
   );
 }

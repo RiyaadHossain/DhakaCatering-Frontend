@@ -4,6 +4,10 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+.social-icon {
+  @apply bg-gray-300 w-10 h-10 set-center rounded-full hover:bg-slate-700;
+}
+
 .section-title {
   @apply text-3xl md:text-4xl text-center font-bold mb-10;
 }
