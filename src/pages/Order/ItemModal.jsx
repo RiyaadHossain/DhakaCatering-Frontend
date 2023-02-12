@@ -59,11 +59,11 @@ export default function ItemModal({
     <div>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box max-w-3xl">
+        <div className="modal-box px-2 max-w-3xl">
           <div className=" flex items-center justify-between">
             <p>
-              <span className="font-semibold text-lg">Total Price:</span> $
-              {totalPrice}
+              <span className="font-semibold text-lg">Total Price: </span> 
+              {totalPrice} ৳
             </p>
             <p className="btn btn-sm">{selItems.length}</p>
           </div>
@@ -84,6 +84,7 @@ export default function ItemModal({
           </div>
           <div className="py-4">
             <p className="font-semibold mb-2 mt-6">Selected Items -</p>
+            <p className="text-info text-sm">*Swipe Left to view full Table</p>
             <SelectedItem
               selItems={selItems}
               setSelItems={setSelItems}
@@ -107,7 +108,7 @@ export default function ItemModal({
                 </select>
             </div>
             {/* ------------------ Table ------------------ */}
-            <p className="text-info">*Swipe Left to view full Table</p>
+            <p className="text-info text-sm">*Swipe Left to view full Table</p>
             <div className="overflow-x-auto w-full rounded-t-lg">
               <table className="table w-full border">
                 <thead>
@@ -126,7 +127,7 @@ export default function ItemModal({
                             <input
                               value={JSON.stringify({ ...item, qty: 1 })}
                               type="checkbox"
-                              className="checkbox checkbox-sm "
+                              className="checkbox checkbox-sm bg-slate-100 input-bordered border-slate-500"
                             />
                           </label>
                         </th>

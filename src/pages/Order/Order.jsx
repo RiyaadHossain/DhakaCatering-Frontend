@@ -85,11 +85,11 @@ export default function Order() {
       <h4 className="text-xl md:text-2xl font-bold text-center pt-20 pb-5 mb-5 md:mb-10">
         Please Make the Customize Order
       </h4>
-      <div className="flex items-center justify-center px-4 md:px-8 max-w-4xl mx-auto">
+      <div className="flex items-center justify-center px-2 md:px-8 max-w-4xl mx-auto">
         <div className="card flex-shrink-0 w-full max-w-5xl shadow-xl bg-gray-200">
-          <div className="card-body">
+          <div className="card-body px-1">
             <form onSubmit={handleSubmit(handleOrder)}>
-              <div className="flex gap-3 md:gap-6 flex-wrap">
+              <div className="flex gap-3 md:gap-6 flex-wrap flex-col md:flex-row">
                 <div className="form-control flex-1">
                   <label className="label">
                     <span className="label-text">
@@ -103,7 +103,7 @@ export default function Order() {
                     type="text"
                     placeholder="Give a package name"
                     {...register("name", { required: true })}
-                    className="input input-bordered rounded-md"
+                    className="input input-bordered rounded-md w-full"
                   />
                   {errors.name && (
                     <span className="text-error text-xs text-left mt-1">
@@ -162,7 +162,7 @@ export default function Order() {
               <div className="my-5">
                 <div className="mt-4 flex justify-between mb-2">
                   <p>
-                    <span className="font-semibold text-lg"> Price:</span> {totalPrice}
+                    <span className="font-semibold text-lg"> Price:</span> {totalPrice}৳
                   </p>
                   <p className="text-right">
                     <span className="font-semibold text-lg">Items:</span>{" "}

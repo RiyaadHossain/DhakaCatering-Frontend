@@ -10,6 +10,7 @@ import { storeToken } from "../../utils/token";
 
 export default function ModalContent({
   id,
+  token,
   handleOrder,
   setOpenModal,
   customOrderPage,
@@ -86,7 +87,7 @@ export default function ModalContent({
 
   return (
     <div>
-      {data?.data?.token && !customOrderPage ? (
+      {token && !customOrderPage ? (
         <>
           <h3 className="font-bold text-xl text-center">
             To Confirm the Order

@@ -80,7 +80,7 @@ export default function PackageDetails() {
             Order Now
           </label>
           <p className="mt-2 text-sm font-semibold ">
-            Didn't Like the package?{" "}
+            Didn't Like it?{" "}
             <span onClick={() => navigate("/custom-order")} className="link">
               {" "}
               Make a custom Order

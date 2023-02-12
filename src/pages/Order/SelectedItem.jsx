@@ -52,7 +52,11 @@ export default function SelectedItem({
     calculateTotalPrice();
   };
 
-  selItems = selItems.sort((a, b) => a.price - b.price);
+  selItems = selItems.sort((a, b) => {
+    const id1 = a._id.replace(/[a-z]/gi, '')
+    const id2 = b._id.replace(/[a-z]/gi, '')
+    return id1 - id2
+  });
 
   return (
     <div className="overflow-x-auto w-full">
@@ -102,11 +106,12 @@ export default function SelectedItem({
                         </span>
                       ) : null}
                     </div>
-                    <div className="badge badge-sm">{item.category}</div>
+                   {!nobtn && <div className="badge badge-sm">{item.category}</div>}
                   </div>
                 </div>
               </td>
               <td>{item.qty}</td>
+              {/* <input type="text" name="" id="" className="max-w-[60px] rounded-md input input-sm input-bordered border-slate-400"/> */}
               <td>
                 {item.gotDiscount ? (
                   <>
