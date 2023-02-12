@@ -83,18 +83,20 @@ export default function SelectedItem({
               </th>
               <td>
                 <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src={item.image.url}
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                  {!nobtn ? (
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={item.image.url}
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                   <div>
                     <div className="font-bold">
                       {item.name}
-                      {item.discountedPrice ? (
+                      {item.discountedPrice && !nobtn ? (
                         <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
                           {item.gotDiscount} tk Off
                         </span>

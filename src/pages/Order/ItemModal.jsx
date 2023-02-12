@@ -107,6 +107,7 @@ export default function ItemModal({
                 </select>
             </div>
             {/* ------------------ Table ------------------ */}
+            <p className="text-info">*Swipe Left to view full Table</p>
             <div className="overflow-x-auto w-full rounded-t-lg">
               <table className="table w-full border">
                 <thead>
@@ -128,7 +129,7 @@ export default function ItemModal({
                               className="checkbox checkbox-sm "
                             />
                           </label>
-                        </th>{/* bg-slate-300 */}
+                        </th>
                         <td>
                           <div className="flex items-center space-x-3">
                             <div className="avatar">
