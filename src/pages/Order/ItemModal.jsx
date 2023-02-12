@@ -59,7 +59,7 @@ export default function ItemModal({
     <div>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box px-2 max-w-3xl">
+        <div className="modal-box px-2 md:px-7 max-w-3xl">
           <div className=" flex items-center justify-between">
             <p>
               <span className="font-semibold text-lg">Total Price: </span> 

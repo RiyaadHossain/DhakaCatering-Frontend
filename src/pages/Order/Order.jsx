@@ -87,7 +87,7 @@ export default function Order() {
       </h4>
       <div className="flex items-center justify-center px-2 md:px-8 max-w-4xl mx-auto">
         <div className="card flex-shrink-0 w-full max-w-5xl shadow-xl bg-gray-200">
-          <div className="card-body px-1">
+          <div className="card-body px-1 md:px-6">
             <form onSubmit={handleSubmit(handleOrder)}>
               <div className="flex gap-3 md:gap-6 flex-wrap flex-col md:flex-row">
                 <div className="form-control flex-1">
