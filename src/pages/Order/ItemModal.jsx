@@ -10,8 +10,7 @@ export default function ItemModal({
   selItems,
   setSelItems,
 }) {
-
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
   const { data, isFetching } = useGetItemsQuery();
   if (isFetching) return <Loading />;
 
@@ -20,11 +19,12 @@ export default function ItemModal({
   const handleCheck = (e) => {
     let { checked, value } = e.target;
     value = JSON.parse(value);
-    value.gotDiscount = value.discountedPrice && value.price - value.discountedPrice
-    value.price = value.discountedPrice ? value.discountedPrice : value.price
+    value.gotDiscount =
+      value.discountedPrice && value.price - value.discountedPrice;
+    value.price = value.discountedPrice ? value.discountedPrice : value.price;
     value = { ...value, totalPrice: value.price };
     if (checked) {
-      selItems = [...selItems, {...value}];
+      selItems = [...selItems, { ...value }];
       setSelItems(selItems);
     } else {
       selItems = selItems.filter((item) => item._id !== value._id);
@@ -54,7 +54,6 @@ export default function ItemModal({
   if (category === "All" || category === "default") {
     filteredItems = unselectedItems;
   }
-
 
   return (
     <div>
@@ -91,22 +90,22 @@ export default function ItemModal({
               totalPrice={totalPrice}
               setTotalPrice={setTotalPrice}
             />
-            <div className="flex items-center justify-between mt-10 mb-3">
-        <p className="font-semibold">Select More Items -</p>
-        <select
-          defaultValue="default"
-          onClick={(e) => setCategory(e.target.value)}
-          className="select w-full max-w-[250px] rounded-md bg-slate-200 input-bordered "
-        >
-          <option disabled value="default">
-            Select Category
-          </option>
-          <option value="Breakfast">Breakfast</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="All">All</option>
-        </select>
-      </div>
+            <div className="flex flex-wrap items-center justify-between mt-10 mb-3">
+                <p className="font-semibold mb-1">Select More Items -</p>
+                <select
+                  defaultValue="default"
+                  onClick={(e) => setCategory(e.target.value)}
+                  className="select w-full md:max-w-[250px] rounded-md bg-slate-200 input-bordered "
+                >
+                  <option disabled value="default">
+                    Select Category
+                  </option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="All">All</option>
+                </select>
+            </div>
             {/* ------------------ Table ------------------ */}
             <div className="overflow-x-auto w-full rounded-t-lg">
               <table className="table w-full border">
@@ -118,58 +117,64 @@ export default function ItemModal({
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredItems.length ? filteredItems.map((item) => (
-                    <tr key={item._id}>
-                      <th>
-                        <label onClick={(e) => handleCheck(e)}>
-                          <input
-                            value={JSON.stringify({ ...item, qty: 1 })}
-                            type="checkbox"
-                            className="checkbox checkbox-sm"
-                          />
-                        </label>
-                      </th>
-                      <td>
-                        <div className="flex items-center space-x-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img
-                                src={item.image.url}
-                                alt="Avatar Tailwind CSS Component"
-                              />
+                  {filteredItems.length ? (
+                    filteredItems.map((item) => (
+                      <tr key={item._id}>
+                        <th>
+                          <label className="" onClick={(e) => handleCheck(e)}>
+                            <input
+                              value={JSON.stringify({ ...item, qty: 1 })}
+                              type="checkbox"
+                              className="checkbox checkbox-sm "
+                            />
+                          </label>
+                        </th>{/* bg-slate-300 */}
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img
+                                  src={item.image.url}
+                                  alt="Avatar Tailwind CSS Component"
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-bold">
+                                {item.name}
+                                {item.discountedPrice ? (
+                                  <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
+                                    {item.price - item.discountedPrice} tk Off
+                                  </span>
+                                ) : null}
+                              </div>
+                              <div className="badge badge-sm">
+                                {item.category}
+                              </div>
                             </div>
                           </div>
-                          <div>
-                            <div className="font-bold">
-                              {item.name}
-                              {item.discountedPrice ? (
-                                <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
-                                  {item.price - item.discountedPrice} tk Off
-                                </span>
-                              ) : null}
-                            </div>
-                            <div className="badge badge-sm">
-                              {item.category}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span
-                          className={`${
-                            item.discountedPrice && "text-xs line-through"
-                          } `}
-                        >
-                          {item.price}
-                        </span>
-                        {item.discountedPrice && (
-                          <>
-                            <br /> {item.discountedPrice}
-                          </>
-                        )}
-                      </td>
-                    </tr>
-                  )) : <span className="text-center my-4 block">No Item with {category} category</span>}
+                        </td>
+                        <td>
+                          <span
+                            className={`${
+                              item.discountedPrice && "text-xs line-through"
+                            } `}
+                          >
+                            {item.price}
+                          </span>
+                          {item.discountedPrice && (
+                            <>
+                              <br /> {item.discountedPrice}
+                            </>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <span className="text-center my-4 block">
+                      No Item with {category} category
+                    </span>
+                  )}
                 </tbody>
               </table>
             </div>
