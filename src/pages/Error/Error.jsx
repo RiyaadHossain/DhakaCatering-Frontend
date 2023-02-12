@@ -13,7 +13,7 @@ export default function Error() {
     <div className="bg-slate-200">
       <div className="flex items-center flex-col justify-center w-screen px-3 h-screen gap-3">
         <img src={Bug_Fix} alt="" className="w-h-56 h-56 mb-8"/>
-        <h3 className="text-3xl font-semibold">We're Extreamly Sorry!</h3>
+        <h3 className="text-3xl font-semibold text-center">We're Extreamly Sorry!</h3>
         <p className=" text-center">
           Some Unexpected Error Occurred, Please contact Support
         </p>
