@@ -34,20 +34,19 @@ Project Video:
 ### Technologies
 
 <div style="display: flex; gap: 50px; flex-wrap: wrap;">
-<img style="object-fit: cover" src="/icons/html-5.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/css-3.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/tailwind-css.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/js.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/react.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/node-js.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/express.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/mongoDB.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/mongoose.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/react-hook-form.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/react-hot-toast.jpg" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/daisyUI.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/swiper.png" alt="React" height="50" width="50"/>
-<img style="object-fit: cover" src="/icons/moment.jpg" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/html-5.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/css-3.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/tailwind-css.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/js.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/react.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/node-js.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/express.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/mongoDB.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/mongoose.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/react-hook-form.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/react-hot-toast.jpg" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/swiper.png" alt="React" height="50" width="50"/>
+<img style="object-fit: cover;" src="/icons/moment.jpg" alt="React" height="50" width="50"/>
 </div>
 
 - HTML
