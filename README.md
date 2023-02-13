@@ -33,6 +33,11 @@ Project Video:
 
 ### Technologies
 
+- Front-End: HTML - CSS - Tailwind - JavaScript - React.js - DaisyUI 
+- Back-end: Node.js - Express.js - MongoDB
+- State Management: Redux - React-Redux - Redux-Toolkit - RTK Query
+- Tools: React Hook Form - React Hot Toast - Moment - Swiper - SweetAlert2
+
 <div style="display: flex; gap: 80px; flex-wrap: wrap;">
 <img style="object-fit: cover;" src="/icons/html-5.png" alt="React" height="50" width="50"/>
 <img style="object-fit: cover;" src="/icons/css-3.png" alt="React" height="50" width="50"/>
@@ -49,9 +54,5 @@ Project Video:
 <img style="object-fit: cover;" src="/icons/moment.jpg" alt="React" height="50" width="50"/>
 </div>
 
-- Front-End: HTML - CSS - Tailwind - JavaScript - React.js - DaisyUI 
-- Back-end: Node.js - Express.js - MongoDB
-- State Management: Redux - React-Redux - Redux-Toolkit - RTK Query
-- Tools: React Hook Form - React Hot Toast - Firebase Authentication
 
 
