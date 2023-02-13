@@ -33,7 +33,7 @@ Project Video:
 
 ### Technologies
 
-<div style="display: flex; gap: 50px; flex-wrap: wrap;">
+<div style="display: flex; gap: 80px; flex-wrap: wrap;">
 <img style="object-fit: cover;" src="/icons/html-5.png" alt="React" height="50" width="50"/>
 <img style="object-fit: cover;" src="/icons/css-3.png" alt="React" height="50" width="50"/>
 <img style="object-fit: cover;" src="/icons/tailwind-css.png" alt="React" height="50" width="50"/>
