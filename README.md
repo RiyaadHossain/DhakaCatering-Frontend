@@ -29,6 +29,13 @@ Project Video:
 - Implemented Customize order option
 - In Gallery page, user can see some of our previously successfully delivered project
 
+### Admin Features
+
+- Admin can visualize site's Statistics
+- Admins can see users, items, packages and gallery images
+- Packages, Items can be created, updated, deleted by Admin
+- Admin can delete reviews, keep note for specific users & add or delete gallery images
+
 <hr/>
 
 ### Technologies
