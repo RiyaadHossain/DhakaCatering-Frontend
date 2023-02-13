@@ -21,6 +21,8 @@ Project Video:
 - Developed Email based authentication
 - Build Role Based Authorization
 - Linked social platform like Facebook, WhatsApp, Instagram
+- Image Upload using ImageBB
+- Implemented toast
 
 ### Customer Features
 
@@ -43,7 +45,7 @@ Project Video:
 - Front-End: HTML - CSS - Tailwind - JavaScript - React.js - DaisyUI 
 - Back-end: Node.js - Express.js - MongoDB
 - State Management: Redux - React-Redux - Redux-Toolkit - RTK Query
-- Tools: React Hook Form - React Hot Toast - Moment - Swiper - SweetAlert2
+- Tools: ImageBB - React Hook Form - React Hot Toast - Moment - Swiper - SweetAlert2
 
 <div style="display: flex; gap: 80px; flex-wrap: wrap;">
 <img style="object-fit: cover;" src="/icons/html-5.png" alt="React" height="50" width="50"/>
