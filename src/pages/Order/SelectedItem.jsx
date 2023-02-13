@@ -53,9 +53,9 @@ export default function SelectedItem({
   };
 
   selItems = selItems.sort((a, b) => {
-    const id1 = a._id.replace(/[a-z]/gi, '')
-    const id2 = b._id.replace(/[a-z]/gi, '')
-    return id1 - id2
+    const id1 = a._id.replace(/[a-z]/gi, "");
+    const id2 = b._id.replace(/[a-z]/gi, "");
+    return id1 - id2;
   });
 
   return (
@@ -87,31 +87,26 @@ export default function SelectedItem({
               </th>
               <td>
                 <div className="flex items-center space-x-3">
-                  {!nobtn ? (
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.image.url}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                  ) : null}
                   <div>
-                    <div className="font-bold">
-                      {item.name}
-                      {item.discountedPrice && !nobtn ? (
-                        <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
-                          {item.gotDiscount} tk Off
-                        </span>
-                      ) : null}
-                    </div>
-                   {!nobtn && <div className="badge badge-sm">{item.category}</div>}
+                    <div className="font-bold">{item.name}</div>{" "}
+                    {item.discountedPrice && !nobtn ? (
+                      <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
+                        {item.gotDiscount} tk Off
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               </td>
-              <td>{item.qty}</td>
-              {/* <input type="text" name="" id="" className="max-w-[60px] rounded-md input input-sm input-bordered border-slate-400"/> */}
+              <td>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  defaultValue={1}
+                  className="max-w-[60px] rounded-md input input-sm input-bordered border-slate-400"
+                />
+              </td>
+              {/* {item.qty} */}
               <td>
                 {item.gotDiscount ? (
                   <>
@@ -123,22 +118,6 @@ export default function SelectedItem({
                 ) : null}
                 {item.totalPrice}
               </td>
-              {!nobtn && (
-                <th className="grid gap-1">
-                  <button
-                    onClick={() => increase(item._id)}
-                    className="btn btn-xs w-8 btn-success"
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => decrease(item._id)}
-                    className="btn btn-xs w-8 btn-error"
-                  >
-                    -
-                  </button>
-                </th>
-              )}
             </tr>
           ))}
         </tbody>
