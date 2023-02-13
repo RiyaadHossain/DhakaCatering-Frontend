@@ -1,5 +1,5 @@
 ![alt text](/screenshots/banner.png)
-![alt text](/icons/react.png)
+
 # Dhaka Catering 🍔
 
 <p>Dhaka Catering - a catering service related website. It is a MERN stack catering website that allows users to order food online. Users must sign up to order food, and can also add items to a wishlist, give reviews, make custom orders, and more. The website will provide an easy-to-use interface and an efficient ordering system.</p>
@@ -20,8 +20,7 @@ Project Video:
 - Fully Responsive on Mobile, Tablet and Desktop screen
 - Developed Email based authentication
 - Build Role Based Authorization
-- Linked social platform like Facebook, WhatsApp, Instagram 
-
+- Linked social platform like Facebook, WhatsApp, Instagram
 
 ### Customer Features
 
@@ -33,6 +32,8 @@ Project Video:
 <hr/>
 
 ### Technologies
+
+<img src="/icons/react.png" alt="React" height="30" width="30"/>
 
 - HTML
 - CSS
