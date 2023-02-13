@@ -49,4 +49,9 @@ Project Video:
 <img style="object-fit: cover;" src="/icons/moment.jpg" alt="React" height="50" width="50"/>
 </div>
 
-- HTML - CSS - Tailwind - JavaScript - React.js - DaisyUI - Redux - React-Redux - Redux-Toolkit - RTK Query - Node.js - Express.js - MongoDB - React Hook Form - React Hot Toast - Firebase Authentication
+- Front-End: HTML - CSS - Tailwind - JavaScript - React.js - DaisyUI 
+- Back-end: Node.js - Express.js - MongoDB
+- State Management: Redux - React-Redux - Redux-Toolkit - RTK Query
+- Tools: React Hook Form - React Hot Toast - Firebase Authentication
+
+
