@@ -33,12 +33,21 @@ Project Video:
 
 ### Technologies
 
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<div style="display: flex; gap: 30px; flex-wrap: wrap;">
 <img src="/icons/html-5.png" alt="React" height="30" width="30"/>
 <img src="/icons/css-3.png" alt="React" height="30" width="30"/>
+<img src="/icons/tailwind-css.png" alt="React" height="30" width="30"/>
 <img src="/icons/js.png" alt="React" height="30" width="30"/>
 <img src="/icons/react.png" alt="React" height="30" width="30"/>
 <img src="/icons/node-js.png" alt="React" height="30" width="30"/>
+<img src="/icons/express.png" alt="React" height="30" width="30"/>
+<img src="/icons/mongoDB.png" alt="React" height="30" width="30"/>
+<img src="/icons/mongoose.png" alt="React" height="30" width="30"/>
+<img src="/icons/react-hook-form.png" alt="React" height="30" width="30"/>
+<img src="/icons/react-hot-toast.jpg" alt="React" height="30" width="30"/>
+<img src="/icons/daisyUI.png" alt="React" height="30" width="30"/>
+<img src="/icons/swiper.png" alt="React" height="30" width="30"/>
+<img src="/icons/moment.jpg" alt="React" height="30" width="30"/>
 </div>
 
 - HTML
