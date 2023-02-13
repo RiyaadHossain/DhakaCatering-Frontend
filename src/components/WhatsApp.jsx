@@ -23,7 +23,7 @@ export default function WhatsApp() {
     <a
       target="_blank"
       rel="noreferrer"
-      href="https://wa.me/+08801703790978"
+      href="https://wa.me/+8801703790978"
       className={`fixed ${
         shake && "shake"
       } z-50 inline-block bg-emerald-600 left-3 p-2 rounded-full bottom-3`}

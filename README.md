@@ -1,4 +1,4 @@
-![alt text](/screenshots/Home-Page.png)
+![alt text](/screenshots/banner.png)
 
 # Dhaka Catering 🍔
 
@@ -20,6 +20,7 @@ Project Video:
 - Fully Responsive on Mobile, Tablet and Desktop screen
 - Developed Email based authentication
 - Build Role Based Authorization
+- Linked social platform like Facebook, WhatsApp, Instagram 
 
 <br/>
 
