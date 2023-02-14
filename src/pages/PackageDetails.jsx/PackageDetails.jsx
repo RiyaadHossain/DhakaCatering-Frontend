@@ -16,6 +16,7 @@ import { useState } from "react";
 
 export default function PackageDetails() {
   const [open, setOpen] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
   const token = getToken();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,11 +31,15 @@ export default function PackageDetails() {
 
   if (isFetching) return <Loading />;
 
-  const { _id, name, price, category, description, image, allItems } =
-    data?.data;
+  let { _id, name, price, category, description, image, allItems } = data?.data;
 
   const handleOrder = () => {
-    createOrder({ token, orderData: { foodId: _id, price } });
+    createOrder({ token, orderData: { foodId: _id, totalPrice } });
+    navigate('/')
+  };
+
+  const calculatePrice = (person) => {
+    setTotalPrice(price * person);
   };
 
   return (
@@ -68,17 +73,40 @@ export default function PackageDetails() {
             ))}
 
             <div className="mt-3 flex items-center justify-between">
-              <p className="font-semibold text-lg">Total</p>
+              <p className=" text-md">Total Per Person -</p>
               <p className="font-semibold">{price}</p>
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text"></span>
+              </label>
+              <input
+                type="number"
+                placeholder="Minimum 50"
+                className="input rounded-md input-bordered"
+                onChange={(e) => calculatePrice(e.target.value)}
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-between">
+              <p className="font-semibold text-md">Total</p>
+              <p className="font-semibold">{totalPrice}</p>
+            </div>
           </div>
-          <label
+          {totalPrice < 50000 ? (
+            <span className="text-error text-xs text-left mt-2">
+              Total person can't be less than 50
+            </span>
+          ) : null}
+          <button
+            disabled={totalPrice < 50000}
             htmlFor="my-modal-order"
             onClick={() => setOpen(true)}
-            className="btn mt-5 rounded-md btn-wide"
+            className={`btn mt-1 rounded-md btn-wide ${
+              totalPrice < 50000 ? "cursor-not-allowed" : null
+            }`}
           >
             Order Now
-          </label>
+          </button>
           <p className="mt-2 text-sm font-semibold ">
             Didn't Like it?{" "}
             <span onClick={() => navigate("/custom-order")} className="link">
@@ -99,7 +127,7 @@ export default function PackageDetails() {
       {open && (
         <>
           <input type="checkbox" id="my-modal-order" className="modal-toggle" />
-          <div className="modal">
+          <div className="modal modal-open">
             <div className="modal-box border-2 border-gray-400 relative">
               <button
                 onClick={() => setOpen(false)}

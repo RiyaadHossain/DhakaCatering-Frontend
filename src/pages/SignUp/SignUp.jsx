@@ -5,7 +5,6 @@ import signup from "../../assets/images/signin.jpg";
 import { useForm, useWatch } from "react-hook-form";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { useUserSignUpMutation } from "../../features/auth/authAPI";
 import { toast } from "react-hot-toast";
 import { useRef } from "react";
@@ -14,7 +13,6 @@ export default function SignUp() {
   // const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
   let errorMessage = useRef("Something went wrong");
-  const imgStorage_key = "b20e07a3b33d3ccbb413087c3d9d148d";
 
   const [signupFunc, { isLoading, isError, isSuccess, error }] =
     useUserSignUpMutation();
@@ -39,23 +37,7 @@ export default function SignUp() {
   }, [password, confirmPassword]);
 
   const handleSignUp = async (userData) => {
-    const imageData = userData?.imgURL[0];
-    const formData = new FormData();
-    formData.append("image", imageData);
-    const URL = `https://api.imgbb.com/1/upload?key=${imgStorage_key}`;
-    const { data } = await axios.post(URL, formData);
-
-    if (data.success) {
-      userData = {
-        ...userData,
-        imageUrl: data.data.url,
-      };
-
-      signupFunc(userData);
-    } else {
-      toast.error("Something went wrong");
-    }
-
+    signupFunc(userData);
     reset();
   };
 
@@ -74,7 +56,7 @@ export default function SignUp() {
         style: { width: "420px" },
       });
 
-    if (isError) toast.error(errorMessage.current, { id: "err" });
+    if (isError) toast.error(error.data.error || errorMessage.current, { id: "err" });
   }, [isLoading, isSuccess, isError, errorMessage, error]);
 
   return (
@@ -130,16 +112,21 @@ export default function SignUp() {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Image</span>
+                    <span className="label-text">Phone</span>
                   </label>
                   <input
-                    type="file"
-                    className="file-input w-full rounded-md input-bordered"
-                    {...register("imgURL", { required: true })}
+                    type="number"
+                    placeholder="01703790978"
+                    className="input rounded-md input-bordered"
+                    {...register("contactNumber", {
+                      required: true,
+                      maxLength: 11,
+                      minLength: 11,
+                    })}
                   />
-                  {errors.imgURL && (
+                  {errors.phone && (
                     <span className="text-error text-xs text-left mt-1">
-                      Image is required
+                      Valid Bangladeshi number is required
                     </span>
                   )}
                 </div>
@@ -170,36 +157,7 @@ export default function SignUp() {
                     {...register("confirmPassword", { required: true })}
                   />
                 </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Phone</span>
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="01703790978"
-                    className="input rounded-md input-bordered"
-                    {...register("contactNumber", {
-                      required: true,
-                      maxLength: 11,
-                      minLength: 11,
-                    })}
-                  />
-                  {errors.phone && (
-                    <span className="text-error text-xs text-left mt-1">
-                      Valid Bangladeshi number is required
-                    </span>
-                  )}
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Occupation</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Businessman"
-                    className="input rounded-md input-bordered"
-                  />
-                </div>
+
                 <div className="form-control mt-6 flex flex-col gap-3">
                   <button type="submit" disabled={disabled} className="btn">
                     Sign Up

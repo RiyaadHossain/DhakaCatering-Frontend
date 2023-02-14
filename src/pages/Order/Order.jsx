@@ -61,11 +61,12 @@ export default function Order() {
     if (!date) {
       return toast.error("Please pick a date");
     }
+    const calculatedPrice = totalPrice * orderRequestData.person;
     orderRequestDataGlobal = {
       ...orderRequestData,
-      allItems,
-      totalPrice,
       date,
+      allItems,
+      totalPrice: calculatedPrice,
     };
     setOrderRequestInfo(orderRequestDataGlobal);
     if (!token) {
@@ -86,11 +87,18 @@ export default function Order() {
         Please Make the Customize Order
       </h4>
       <div className="flex items-center justify-center px-2 md:px-8 max-w-4xl mx-auto">
-        <div className="card flex-shrink-0 w-full max-w-5xl shadow-xl bg-gray-200">
+        <div className="card flex-shrink-0 w-full max-w-5xl shadow-xl border border-slate-500">
           <div className="card-body px-1 md:px-6">
             <form onSubmit={handleSubmit(handleOrder)}>
               <div className="flex gap-3 md:gap-6 flex-wrap flex-col md:flex-row">
-                <div className="form-control flex-1">
+                <DayPicker
+                  disabled={disabledDays}
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  footer={footer}
+                />
+                <div className="form-control">
                   <label className="label">
                     <span className="label-text">
                       Package Name{" "}
@@ -103,7 +111,7 @@ export default function Order() {
                     type="text"
                     placeholder="Give a package name"
                     {...register("name", { required: true })}
-                    className="input input-bordered rounded-md w-full"
+                    className="input input-bordered rounded-md w-full bg-slate-200"
                   />
                   {errors.name && (
                     <span className="text-error text-xs text-left mt-1">
@@ -111,7 +119,7 @@ export default function Order() {
                     </span>
                   )}
                 </div>
-                <div className="form-control flex-1">
+                <div className="form-control">
                   <label className="label">
                     <span className="label-text">
                       Category{" "}
@@ -123,7 +131,7 @@ export default function Order() {
                   <select
                     defaultValue="Empty"
                     {...register("category", { required: true })}
-                    className="select select-bordered rounded-md w-full"
+                    className="select select-bordered rounded-md w-full bg-slate-200"
                   >
                     <option disabled value="Empty">
                       Select a Category
@@ -143,13 +151,7 @@ export default function Order() {
                 </div>
               </div>
 
-              <div className="form-control flex-1">
-                <label className="label">
-                  <span className="label-text">
-                    Select Item{" "}
-                    <span className="text-xs text-error font-semibold">*</span>
-                  </span>
-                </label>
+              <div className="form-control flex-1 mt-5">
                 <label htmlFor="my-modal" className="btn rounded-md">
                   Select Items
                 </label>
@@ -159,31 +161,43 @@ export default function Order() {
                   </span>
                 )}
               </div>
-              <div className="my-5">
-                <div className="mt-4 flex justify-between mb-2">
+              <div className="my-4">
+                <SelectedItem
+                  selItems={selItems}
+                  setSelItems={setSelItems}
+                  totalPrice={totalPrice}
+                  setTotalPrice={setTotalPrice}
+                />
+                <div className="mt-3 flex justify-between mb-2 px-3">
                   <p>
-                    <span className="font-semibold text-lg"> Price:</span> {totalPrice}৳
+                    <span className="font-semibold text-lg"> Price:</span>{" "}
+                    {totalPrice}৳
                   </p>
                   <p className="text-right">
                     <span className="font-semibold text-lg">Items:</span>{" "}
                     {selItems.length}
                   </p>
                 </div>
-                <SelectedItem
-                  nobtn={true}
-                  selItems={selItems}
-                  setSelItems={setSelItems}
-                  totalPrice={totalPrice}
-                  setTotalPrice={setTotalPrice}
-                />
               </div>
-              <DayPicker
-                disabled={disabledDays}
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                footer={footer}
-              />
+              <div className="form-control flex-1">
+                <label className="label">
+                  <span className="label-text">
+                    Total Person{" "}
+                    <span className="text-xs text-error font-semibold">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Minimum 50"
+                  {...register("person", { required: true, min: 50 })}
+                  className="input input-bordered rounded-md w-full bg-slate-200"
+                />
+                {errors.person && (
+                  <span className="text-error text-xs text-left mt-1">
+                    Person should be minimum 50
+                  </span>
+                )}
+              </div>
               <div className="form-control mt-6">
                 <button
                   type="submit"

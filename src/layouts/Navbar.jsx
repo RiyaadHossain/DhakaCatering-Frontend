@@ -4,7 +4,6 @@ import WishListIn from "../components/WishListIn";
 import UserIcon from "../components/ProfileIn";
 
 export default function Navbar() {
-
   return (
     <div className="mx-4 mt-4">
       <div className="navbar bg-base-300 shadow-md px-2 rounded-full">
@@ -37,6 +36,9 @@ export default function Navbar() {
               </li>
               <li className="font-semibold hover-bordered flex justify-center content-center">
                 <Link to="/menu">Menu</Link>
+              </li>
+              <li className="font-semibold flex hover-bordered justify-center content-center">
+                <Link to="/gallery">Gallery</Link>
               </li>
               <li className="font-semibold flex hover-bordered justify-center content-center">
                 <Link to="/contact">Contact</Link>
@@ -75,8 +77,8 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          <WishListIn/>
-          <UserIcon/>
+          <WishListIn />
+          <UserIcon />
         </div>
       </div>
     </div>

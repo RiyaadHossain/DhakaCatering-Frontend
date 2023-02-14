@@ -16,7 +16,7 @@ export default function Packages() {
 
   return (
     <div className="py-16">
-      {packages.length ? (
+      {packages?.length ? (
         <>
           <h2 className="section-title">Standard Packages</h2>
           <div className="flex justify-center flex-wrap gap-8 px-4">

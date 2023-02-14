@@ -1,11 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserSignUpMutation } from "../../features/auth/authAPI";
-import { unknownUser } from "../../static/data";
 import { storeToken } from "../../utils/token";
 
 export default function ModalContent({
@@ -18,7 +16,6 @@ export default function ModalContent({
   orderRequestDataGlobal,
 }) {
   const navigate = useNavigate();
-  const imgStorage_key = "b20e07a3b33d3ccbb413087c3d9d148d";
 
   const {
     reset,
@@ -31,24 +28,8 @@ export default function ModalContent({
     useUserSignUpMutation();
 
   const signinHandle = async (userData) => {
-    toast.loading("Processing...", { id: "loading", duration: 2000 });
-    const imageData = userData?.image[0];
-    const formData = new FormData();
-    formData.append("image", imageData);
-    const URL = `https://api.imgbb.com/1/upload?key=${imgStorage_key}`;
-    const { data } = await axios.post(URL, formData);
-    userData = {
-      ...userData,
-      status: "active",
-      role: "User",
-    };
-    if (data.success) {
-      userData.imageUrl = data.data.url;
-      signup(userData);
-    } else {
-      userData.imageUrl = unknownUser;
-      signup(userData);
-    }
+    userData = { ...userData, status: "active" };
+    signup(userData);
     reset();
   };
 
@@ -139,21 +120,6 @@ export default function ModalContent({
                   {errors.fullName && (
                     <span className="text-error text-xs text-left mt-1">
                       Name is required
-                    </span>
-                  )}
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Image</span>
-                  </label>
-                  <input
-                    type="file"
-                    className="file-input rounded-md input-bordered"
-                    {...register("image", { required: true })}
-                  />
-                  {errors.image && (
-                    <span className="text-error text-xs text-left mt-1">
-                      Image is required
                     </span>
                   )}
                 </div>

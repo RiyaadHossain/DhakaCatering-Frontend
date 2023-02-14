@@ -62,7 +62,7 @@ export default function ItemModal({
         <div className="modal-box px-2 md:px-7 max-w-3xl">
           <div className=" flex items-center justify-between">
             <p>
-              <span className="font-semibold text-lg">Total Price: </span> 
+              <span className="font-semibold text-lg">Total Price: </span>
               {totalPrice} ৳
             </p>
             <p className="btn btn-sm">{selItems.length}</p>
@@ -84,7 +84,6 @@ export default function ItemModal({
           </div>
           <div className="py-4">
             <p className="font-semibold mb-2 mt-6">Selected Items -</p>
-            <p className="text-info text-sm">*Swipe Left to view full Table</p>
             <SelectedItem
               selItems={selItems}
               setSelItems={setSelItems}
@@ -92,84 +91,81 @@ export default function ItemModal({
               setTotalPrice={setTotalPrice}
             />
             <div className="flex flex-wrap items-center justify-between mt-10 mb-3">
-                <p className="font-semibold mb-1">Select More Items -</p>
-                <select
-                  defaultValue="default"
-                  onClick={(e) => setCategory(e.target.value)}
-                  className="select w-full md:max-w-[250px] rounded-md bg-slate-200 input-bordered "
-                >
-                  <option disabled value="default">
-                    Select Category
-                  </option>
-                  <option value="Breakfast">Breakfast</option>
-                  <option value="Lunch">Lunch</option>
-                  <option value="Dinner">Dinner</option>
-                  <option value="All">All</option>
-                </select>
+              <p className="font-semibold mb-1">Select More Items -</p>
+              <select
+                defaultValue="default"
+                onClick={(e) => setCategory(e.target.value)}
+                className="select w-full md:max-w-[250px] rounded-md bg-slate-200 input-bordered "
+              >
+                <option disabled value="default">
+                  Select Category
+                </option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="All">All</option>
+              </select>
             </div>
             {/* ------------------ Table ------------------ */}
-            <p className="text-info text-sm">*Swipe Left to view full Table</p>
+            {/* <p className="text-info text-sm">*Swipe Left to view full Table</p> */}
             <div className="overflow-x-auto w-full rounded-t-lg">
               <table className="table w-full border">
                 <thead>
-                  <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Price</th>
-                  </tr>
+                  <tr></tr>
                 </thead>
                 <tbody>
                   {filteredItems.length ? (
                     filteredItems.map((item) => (
                       <tr key={item._id}>
-                        <th>
-                          <label className="" onClick={(e) => handleCheck(e)}>
-                            <input
-                              value={JSON.stringify({ ...item, qty: 1 })}
-                              type="checkbox"
-                              className="checkbox checkbox-sm bg-slate-100 input-bordered border-slate-500"
-                            />
-                          </label>
-                        </th>
-                        <td>
-                          <div className="flex items-center space-x-3">
-                            <div className="avatar">
-                              <div className="mask mask-squircle w-12 h-12">
-                                <img
-                                  src={item.image.url}
-                                  alt="Avatar Tailwind CSS Component"
-                                />
+                        <label
+                          className="flex justify-between"
+                          onClick={(e) => handleCheck(e)}
+                        >
+                          <input
+                            value={JSON.stringify({ ...item, qty: 1 })}
+                            type="checkbox"
+                            className="checkbox hidden"
+                          />
+                          <td>
+                            <div className="flex items-center space-x-3">
+                              <div className="avatar">
+                                <div className="mask mask-squircle w-12 h-12">
+                                  <img
+                                    src={item.image.url}
+                                    alt="Avatar Tailwind CSS Component"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="font-bold">
+                                  {item.name}
+                                  {item.discountedPrice ? (
+                                    <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
+                                      {item.price - item.discountedPrice} tk Off
+                                    </span>
+                                  ) : null}
+                                </div>
+                                <div className="badge badge-sm">
+                                  {item.category}
+                                </div>
                               </div>
                             </div>
-                            <div>
-                              <div className="font-bold">
-                                {item.name}
-                                {item.discountedPrice ? (
-                                  <span className="text-sm font-normal ml-2 bg-emerald-300 rounded-md px-2">
-                                    {item.price - item.discountedPrice} tk Off
-                                  </span>
-                                ) : null}
-                              </div>
-                              <div className="badge badge-sm">
-                                {item.category}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <span
-                            className={`${
-                              item.discountedPrice && "text-xs line-through"
-                            } `}
-                          >
-                            {item.price}
-                          </span>
-                          {item.discountedPrice && (
-                            <>
-                              <br /> {item.discountedPrice}
-                            </>
-                          )}
-                        </td>
+                          </td>
+                          <td>
+                            <span
+                              className={`${
+                                item.discountedPrice && "text-xs line-through"
+                              } `}
+                            >
+                              {item.price}
+                            </span>
+                            {item.discountedPrice && (
+                              <>
+                                <br /> {item.discountedPrice}
+                              </>
+                            )}
+                          </td>
+                        </label>
                       </tr>
                     ))
                   ) : (
