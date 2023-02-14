@@ -13,9 +13,9 @@ export default function WishListIn() {
   let { data: user, isFetching: userFetching } = useUserPersistencyQuery(token);
   const { data, isFetching } = useGetWishlistsQuery(token);
   if (isFetching || userFetching) return <IconSpinner />;
-  if (user) {
+  if (user?.data) {
     user = user?.data;
-    userExist = Object?.keys(user)?.length;
+    userExist = Object.keys(user)?.length;
   }
   const totalWishlists = data?.wishLists?.length;
 

@@ -21,6 +21,8 @@ export default function Order() {
   const [openModal, setOpenModal] = useState(null);
   let [selItems, setSelItems] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
+  let [calculated, setCalculated] = useState(0);
+  let [person, setPerson] = useState(0);
   const [createOrderRequest, { isSuccess }] = useCreateOrderRequestMutation();
 
   const privious = new Date();
@@ -78,6 +80,11 @@ export default function Order() {
       setTotalPrice(0);
       setDate();
     }
+  };
+
+  const calculation = (person) => {
+    setPerson(person);
+    setCalculated(person * totalPrice);
   };
 
   return (
@@ -169,14 +176,11 @@ export default function Order() {
                   setTotalPrice={setTotalPrice}
                 />
                 <div className="mt-3 flex justify-between mb-2 px-3">
-                  <p>
-                    <span className="font-semibold text-lg"> Price:</span>{" "}
-                    {totalPrice}৳
+                  <p className="font- text-lg">
+                    {" "}
+                    Price: <span className="text-sm">(Per Person)</span>
                   </p>
-                  <p className="text-right">
-                    <span className="font-semibold text-lg">Items:</span>{" "}
-                    {selItems.length}
-                  </p>
+                  <span className="font-semibold text-lg">{totalPrice}৳</span>
                 </div>
               </div>
               <div className="form-control flex-1">
@@ -189,17 +193,25 @@ export default function Order() {
                 <input
                   type="text"
                   placeholder="Minimum 50"
-                  {...register("person", { required: true, min: 50 })}
+                  onChange={(e) => calculation(e)}
                   className="input input-bordered rounded-md w-full bg-slate-200"
                 />
-                {errors.person && (
+                {person < 50 && (
                   <span className="text-error text-xs text-left mt-1">
                     Person should be minimum 50
                   </span>
                 )}
               </div>
+              <div className="mt-3 flex justify-between mb-2 px-3">
+                <p className="font- text-lg">
+                  {" "}
+                  Price: <span className="text-sm">(Per Person)</span>
+                </p>
+                <span className="font-semibold text-lg">{calculated}৳</span>
+              </div>
               <div className="form-control mt-6">
                 <button
+                  disabled={person < 50}
                   type="submit"
                   className="btn btn-info btn-wide mx-auto rounded-lg"
                 >
