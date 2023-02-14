@@ -27,7 +27,7 @@ const packageSlice = apiSlice.injectEndpoints({
         }),
         updateViewSell: build.mutation({
             query: ({ packageData }) => ({
-                url: `/package/view-sell`,
+                url: `/package`,
                 method: 'PATCH',
                 body: packageData
             })
