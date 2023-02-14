@@ -31,7 +31,7 @@ export default function Packages() {
           </div>
         </>
       ) : (
-        <div className="text-center text-2xl font-semibold">
+        <div className="text-center text-2xl font-semibold flex items-center gap-4 flex-col">
           Due to Internal Server Error Packages can't be visible now
           <button onClick={reload} className="btn btn-wide mx-auto">
             Try Again

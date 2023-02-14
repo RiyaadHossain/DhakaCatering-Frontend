@@ -67,7 +67,7 @@ export default function PackageDetails() {
           <div className="mt-4 max-w-[260px]">
             {allItems.map((item) => (
               <div className="flex justify-between items-center mt-1">
-                <h2>{item.id.name}</h2>
+                <h2>{item?.id?.name}</h2>
                 <span>{item.qty}</span>
               </div>
             ))}
@@ -93,9 +93,9 @@ export default function PackageDetails() {
             </div>
           </div>
           {totalPrice < 50000 ? (
-            <span className="text-error text-xs text-left mt-2">
+            <p className="text-error text-xs text-left mt-2">
               Total person can't be less than 50
-            </span>
+            </p>
           ) : null}
           <button
             disabled={totalPrice < 50000}

@@ -81,7 +81,7 @@ export default function PackageCard({ item }) {
               key={i}
               className="flex items-center justify-between max-w-xs mb-1"
             >
-              <div>{item.id.name}</div>
+              <div>{item?.id?.name}</div>
               <div>{item.qty} </div>
             </div>
           ))}
