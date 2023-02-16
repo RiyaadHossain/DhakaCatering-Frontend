@@ -56,6 +56,7 @@ export default function Order() {
   const handleOrder = (orderRequestData) => {
     if (!selItems.length || !totalPrice)
       return toast.error("You Can't make any empty request", { id: "err" });
+    
     const allItems = selItems.map((item) => {
       return { id: item._id, qty: item.qty, totalPrice: item.totalPrice };
     });
@@ -63,10 +64,11 @@ export default function Order() {
     if (!date) {
       return toast.error("Please pick a date");
     }
-    const calculatedPrice = totalPrice * orderRequestData.person;
+    const calculatedPrice = totalPrice * person;
     orderRequestDataGlobal = {
       ...orderRequestData,
       date,
+      person,
       allItems,
       totalPrice: calculatedPrice,
     };
@@ -78,6 +80,7 @@ export default function Order() {
       reset();
       setSelItems([]);
       setTotalPrice(0);
+      setPerson(0)
       setDate();
     }
   };
@@ -182,7 +185,6 @@ export default function Order() {
                 />
                 <div className="mt-3 flex justify-between mb-2 px-3">
                   <p className="font- text-lg">
-                    {" "}
                     Price: <span className="text-sm">(Per Person)</span>
                   </p>
                   <span className="font-semibold text-lg">{totalPrice}৳</span>
@@ -209,7 +211,7 @@ export default function Order() {
                   </span>
                 )}
               </div>
-              <div className="mt-3 flex justify-between mb-2 px-3">
+              <div className="mt-3 flex justify-between mb-2 px-1">
                 <p className="font- text-lg">Total Price:</p>
                 <span className="font-semibold text-lg">{calculated}৳</span>
               </div>
