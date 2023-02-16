@@ -1,5 +1,5 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PageBanner from "../../components/PageBanner";
 import signup from "../../assets/images/signin.jpg";
 import { useForm, useWatch } from "react-hook-form";
@@ -8,13 +8,17 @@ import { useEffect } from "react";
 import { useUserSignUpMutation } from "../../features/auth/authAPI";
 import { toast } from "react-hot-toast";
 import { useRef } from "react";
+import { storeToken } from "../../utils/token";
+import { userPersistencyReducer } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function SignUp() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const distaptch = useDispatch();
   const [disabled, setDisabled] = useState(true);
   let errorMessage = useRef("Something went wrong");
 
-  const [signupFunc, { isLoading, isError, isSuccess, error }] =
+  const [signupFunc, { isLoading, isError, isSuccess, error, data }] =
     useUserSignUpMutation();
 
   const {
@@ -50,14 +54,24 @@ export default function SignUp() {
         errorMessage.current = "User with same credentials is exist";
     }
 
-    if (isSuccess)
-      toast.success("Please check your mail to activate the account", {
-        id: "succ",
-        style: { width: "420px" },
-      });
-
-    if (isError) toast.error(error.data.error || errorMessage.current, { id: "err" });
-  }, [isLoading, isSuccess, isError, errorMessage, error]);
+    if (isSuccess) {
+      storeToken(data.data.token);
+      toast.success("Signed In", { id: "succ" });
+      distaptch(userPersistencyReducer(data.data.user));
+      navigate("/");
+    }
+    if (isError)
+      toast.error(error.data.error || errorMessage.current, { id: "err" });
+  }, [
+    isLoading,
+    isSuccess,
+    isError,
+    errorMessage,
+    error,
+    data,
+    distaptch,
+    navigate,
+  ]);
 
   return (
     <>

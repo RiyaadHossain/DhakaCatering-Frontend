@@ -159,7 +159,7 @@ export default function Order() {
               </div>
 
               <div className="form-control flex-1 mt-5">
-                <label htmlFor="my-modal" className="btn rounded-md">
+                <label htmlFor="my-modal" className="btn rounded-md" onClick={() => setPerson(0)}>
                   Select Items
                 </label>
                 {errors.items && (
@@ -169,6 +169,11 @@ export default function Order() {
                 )}
               </div>
               <div className="my-4">
+                {!selItems.length && (
+                  <span className="text-error text-sm">
+                    Please select at least 1 item
+                  </span>
+                )}
                 <SelectedItem
                   selItems={selItems}
                   setSelItems={setSelItems}
@@ -185,15 +190,17 @@ export default function Order() {
               </div>
               <div className="form-control flex-1">
                 <label className="label">
-                  <span className="label-text">
+                  <span className="label-text mr-10">
                     Total Person{" "}
                     <span className="text-xs text-error font-semibold">*</span>
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  value={person}
+                  disabled={!selItems.length}
                   placeholder="Minimum 50"
-                  onChange={(e) => calculation(e)}
+                  onChange={(e) => calculation(e.target.value)}
                   className="input input-bordered rounded-md w-full bg-slate-200"
                 />
                 {person < 50 && (
@@ -203,10 +210,7 @@ export default function Order() {
                 )}
               </div>
               <div className="mt-3 flex justify-between mb-2 px-3">
-                <p className="font- text-lg">
-                  {" "}
-                  Price: <span className="text-sm">(Per Person)</span>
-                </p>
+                <p className="font- text-lg">Total Price:</p>
                 <span className="font-semibold text-lg">{calculated}৳</span>
               </div>
               <div className="form-control mt-6">

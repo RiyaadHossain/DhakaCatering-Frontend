@@ -16,7 +16,7 @@ export default function Foods() {
 
   return (
     <div className="py-16">
-      {foods.length ? (
+      {foods?.length ? (
         <>
           <h2 className="section-title">Discover Our Items</h2>
           <div className="flex justify-center flex-wrap gap-8 px-4">

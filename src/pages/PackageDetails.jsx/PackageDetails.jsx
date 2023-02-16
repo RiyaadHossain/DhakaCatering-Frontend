@@ -17,6 +17,7 @@ import { useState } from "react";
 export default function PackageDetails() {
   const [open, setOpen] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [person, setPerson] = useState(0);
   const token = getToken();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -34,11 +35,18 @@ export default function PackageDetails() {
   let { _id, name, price, category, description, image, allItems } = data?.data;
 
   const handleOrder = () => {
-    createOrder({ token, orderData: { foodId: _id, totalPrice } });
-    navigate('/')
+    createOrder({
+      token,
+      orderData: { foodId: _id, totalPrice, person: Number(person) },
+    });
+    toast.success("Your order is being submitted", { id: "succ" });
+    setTimeout(() => {
+      navigate("/");
+    }, 1200);
   };
 
   const calculatePrice = (person) => {
+    setPerson(person);
     setTotalPrice(price * person);
   };
 
@@ -92,17 +100,17 @@ export default function PackageDetails() {
               <p className="font-semibold">{totalPrice}</p>
             </div>
           </div>
-          {totalPrice < 50000 ? (
+          {person < 50 ? (
             <p className="text-error text-xs text-left mt-2">
               Total person can't be less than 50
             </p>
           ) : null}
           <button
-            disabled={totalPrice < 50000}
+            disabled={person < 50}
             htmlFor="my-modal-order"
             onClick={() => setOpen(true)}
             className={`btn mt-1 rounded-md btn-wide ${
-              totalPrice < 50000 ? "cursor-not-allowed" : null
+              person < 50 ? "cursor-not-allowed" : null
             }`}
           >
             Order Now
