@@ -13,7 +13,7 @@ export default function GallerySection() {
     <div className="py-16 px-5">
       <h2 className="section-title">Gallery</h2>
       <div className="gallery">
-        {data.gallery.map((gallery, i) => (
+        {data?.gallery?.map((gallery, i) => (
           <GalleryPhoto key={i} gallery={gallery} />
         ))}
       </div>
