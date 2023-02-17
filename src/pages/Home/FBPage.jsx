@@ -17,7 +17,12 @@ export default function FBPage() {
         other people's newsfeeds, including that of the Page. So, let's say your
         Page were to like our Facebook Page.
       </p>
-      <a href="https://www.facebook.com/" className="btn btn-wide mx-auto mt-5">
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://www.facebook.com/"
+        className="btn btn-wide mx-auto mt-5"
+      >
         Like Page
       </a>
     </div>

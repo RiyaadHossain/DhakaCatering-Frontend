@@ -13,10 +13,12 @@ import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
 import "react-day-picker/dist/style.css";
 import { useCreateOrderRequestMutation } from "../../features/orderRequest/orderRequestAPI";
+import { useNavigate } from "react-router-dom";
 
 export default function Order() {
-  let orderRequestDataGlobal;
   const token = getToken();
+  let orderRequestDataGlobal;
+  const navigate = useNavigate();
   const [orderRequestInfo, setOrderRequestInfo] = useState(null);
   const [openModal, setOpenModal] = useState(null);
   let [selItems, setSelItems] = useState([]);
@@ -56,7 +58,7 @@ export default function Order() {
   const handleOrder = (orderRequestData) => {
     if (!selItems.length || !totalPrice)
       return toast.error("You Can't make any empty request", { id: "err" });
-    
+
     const allItems = selItems.map((item) => {
       return { id: item._id, qty: item.qty, totalPrice: item.totalPrice };
     });
@@ -80,8 +82,11 @@ export default function Order() {
       reset();
       setSelItems([]);
       setTotalPrice(0);
-      setPerson(0)
+      setPerson(0);
       setDate();
+      setTimeout(() => {
+        navigate("/");
+      }, 800);
     }
   };
 
@@ -162,7 +167,11 @@ export default function Order() {
               </div>
 
               <div className="form-control flex-1 mt-5">
-                <label htmlFor="my-modal" className="btn rounded-md" onClick={() => setPerson(0)}>
+                <label
+                  htmlFor="my-modal"
+                  className="btn rounded-md"
+                  onClick={() => setPerson(0)}
+                >
                   Select Items
                 </label>
                 {errors.items && (
