@@ -23,7 +23,7 @@ Project Video:
 - Linked social platform like Facebook, WhatsApp, Instagram
 - Image Upload using ImageBB
 - Email Sending using Nodemailer
-- Implemented toast
+- Use React Hot Toast to display toast notifications 
 
 ### Customer Features
 
